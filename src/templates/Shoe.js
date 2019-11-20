@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layouts/Layout';
+import Layout5 from '../components/layouts/Layout5';
 import SEO from '../hooks/SEO';
 
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -126,7 +126,7 @@ const ShoeTemplate = ({
   };
 
   return (
-    <Layout full={true}>
+    <Layout5 full={true}>
       <SEO title={productName} description={description} />
       <Section style={{ paddingTop: '4rem' }}>
         <Container1200>
@@ -200,7 +200,7 @@ const ShoeTemplate = ({
           </Container800>
         </SectionPrimaryTransparent>
       ) : null}
-    </Layout>
+    </Layout5>
   );
 };
 

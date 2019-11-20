@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
 import styled from '@emotion/styled';
-import Layout from '../components/layouts/Layout';
+import Layout5 from '../components/layouts/Layout5';
 import SEO from '../hooks/SEO';
 import ArticleCode from '../components/articles/ArticleCode';
 
@@ -133,7 +133,7 @@ const ArticleTemplate = ({ data: { article } }) => {
   };
 
   return (
-    <Layout full={true}>
+    <Layout5 full={true}>
       <SEO title={title} description={description} />
       <Section>
         <ArticleContainer>
@@ -154,7 +154,7 @@ const ArticleTemplate = ({ data: { article } }) => {
           <main>{documentToReactComponents(json, options)}</main>
         </ArticleContainer>
       </Section>
-    </Layout>
+    </Layout5>
   );
 };
 

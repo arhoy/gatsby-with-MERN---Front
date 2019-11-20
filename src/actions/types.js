@@ -24,3 +24,7 @@ export const GET_PROFILES = 'GET_PROFILES';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
+
+// reviews
+export const GET_REVIEWS = 'GET_REVIEWS';
+export const REVIEW_ERROR = 'REVIEW_ERROR';

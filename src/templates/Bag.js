@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layouts/Layout';
+import Layout5 from '../components/layouts/Layout5';
 import SEO from '../hooks/SEO';
 
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -39,6 +39,7 @@ import RRC from '../components/reusableStyles/carousel/RRC';
 import prependIf from '../helpers/prependIf';
 import ContentfulProductReviews from '../components/reviews/ContentfulProductReviews';
 import ProductBranding from '../components/products/ProductBranding';
+import OrderReviews from '../components/order-review/OrderReviews';
 
 // run template query
 export const query = graphql`
@@ -126,7 +127,7 @@ const BagTemplate = ({
   };
 
   return (
-    <Layout full={true}>
+    <Layout5 full={true}>
       <SEO title={productName} description={description} />
       <Section style={{ paddingTop: '4rem' }}>
         <Container1200>
@@ -200,7 +201,10 @@ const BagTemplate = ({
           </Container800>
         </SectionPrimaryTransparent>
       ) : null}
-    </Layout>
+      <Section>
+        <OrderReviews slug={productSlug} />
+      </Section>
+    </Layout5>
   );
 };
 
