@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Global, css } from '@emotion/core';
 import NavFashion3 from '../navigation/NavFashion3';
 import { ThemeProvider } from 'emotion-theming';
+import { Provider } from 'react-redux';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+
+import store from '../../store';
 
 // real global scss styles
 import '../../scss/main.scss';
 import Footer from './Footer';
+import { loadUser } from '../../actions/auth';
+import setAuthToken from '../../utils/setAuthToken';
 
 const theme = {
   colors: {
@@ -92,12 +97,20 @@ const FullFooterLayout = styled.footer`
   grid-column: full-start/full-end;
 `;
 
+// check and load user from local storage
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
 const Layout = ({ children, full }) => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
   const white = '#fff';
   const primaryColor = 'rgb(92, 52, 145)';
 
   return (
-    <>
+    <Provider store={store}>
       <Global
         styles={css`
           * {
@@ -125,6 +138,7 @@ const Layout = ({ children, full }) => {
               <NavFashion3 />
             </FullNavLayout>
             <MainFull>{children}</MainFull>
+
             <FullFooterLayout>
               <Footer />
             </FullFooterLayout>
@@ -136,14 +150,15 @@ const Layout = ({ children, full }) => {
             <NavLayout>
               <NavFashion3 />
             </NavLayout>
-            <Main>{children}</Main>
+            <Main>{children} </Main>
+
             <FooterLayout>
               <Footer />
             </FooterLayout>
           </DivFixed>
         </ThemeProvider>
       )}
-    </>
+    </Provider>
   );
 };
 Layout.propTypes = {

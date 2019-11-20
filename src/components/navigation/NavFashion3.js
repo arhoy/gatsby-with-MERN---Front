@@ -138,7 +138,7 @@ const NavFashion2 = () => {
 
   const mobileMenuHandler = () => {
     setMobileMenu(prevState => !prevState);
-    console.log('I was clicked!');
+ 
   };
 
   return (

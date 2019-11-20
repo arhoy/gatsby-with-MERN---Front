@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/layouts/Layout';
+import Layout5 from '../components/layouts/Layout5';
 
 import { graphql } from 'gatsby';
 import SEO from '../hooks/SEO';
@@ -33,7 +33,7 @@ export const getArticles = graphql`
 
 const articles = ({ data }) => {
   return (
-    <Layout full={true}>
+    <Layout5 full={true}>
       <SEO
         title="Fashion Two Articles"
         description="Please see all the articles below related to Fashion Two"
@@ -44,7 +44,7 @@ const articles = ({ data }) => {
           <Articles articles={data.allArticles.nodes} />
         </Container800>
       </Section>
-    </Layout>
+    </Layout5>
   );
 };
 

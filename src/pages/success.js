@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/layouts/Layout';
+import Layout5 from '../components/layouts/Layout5';
 
 import styled from '@emotion/styled';
 
@@ -12,11 +12,11 @@ const Container = styled.div`
 
 const Success = () => {
   return (
-    <Layout>
+    <Layout5>
       <Container>
         <h1>Thank you for your order!</h1>
       </Container>
-    </Layout>
+    </Layout5>
   );
 };
 

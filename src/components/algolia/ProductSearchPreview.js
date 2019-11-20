@@ -20,7 +20,6 @@ const Container = styled.div`
 const CustomLink = styled(NoStyleLink)``;
 
 const ProductSearchPreview = ({ hit }) => {
-  console.log('hit is ', hit);
   if (hit) {
     return (
       <Container>

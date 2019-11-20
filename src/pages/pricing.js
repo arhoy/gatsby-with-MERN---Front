@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/layouts/Layout';
+import Layout5 from '../components/layouts/Layout5';
 import styled from '@emotion/styled';
 import { FaBolt, FaCrown, FaHome, FaCode, FaLeaf } from 'react-icons/fa';
 
@@ -91,7 +91,7 @@ const textGrowth = () => (
 
 const pricing = () => {
   return (
-    <Layout full={true}>
+    <Layout5 full={true}>
       <StyledH2>My Pricing</StyledH2>
 
       <Pricing />
@@ -175,7 +175,7 @@ const pricing = () => {
           <Hero />
         </Container1200>
       </SectionGrey>
-    </Layout>
+    </Layout5>
   );
 };
 

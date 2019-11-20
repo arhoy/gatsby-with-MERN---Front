@@ -1,6 +1,7 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 
-import Layout from '../../components/layouts/Layout';
+import Layout5 from '../../components/layouts/Layout5';
 import { P, H2 } from '../../components/reusableStyles/typography/Typography';
 import { Section } from '../../components/reusableStyles/sections/Sections';
 
@@ -38,7 +39,7 @@ const carousel = ({ data }) => {
   const images2 = data.imageArray2.nodes;
 
   return (
-    <Layout>
+    <Layout5>
       <SEO
         title="Gatsby Aquasar Carousel Examples"
         description="Carousel examples in a Gatsby Site"
@@ -104,7 +105,7 @@ const carousel = ({ data }) => {
           imageHeight={'80vh'}
         />
       </Section>
-    </Layout>
+    </Layout5>
   );
 };
 

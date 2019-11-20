@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SEO from '../hooks/SEO';
-import Layout from '../components/layouts/Layout';
+import Layout5 from '../components/layouts/Layout5';
 
 import getAllShoes from '../hooks/contentful/products/shoes/getAllShoesHook';
 import Products from '../components/products/Products';
@@ -14,14 +14,14 @@ const shoes = () => {
   const description =
     'We got lots of Monnet Shoes, please see our amazing deals on Shoes';
   return (
-    <Layout>
+    <Layout5>
       <SEO title={title} description={description} />
       <ProductPageHeader title={title} description={description} />
 
       <ProductLayout1>
         <Products products={getAllShoes()} productType="products" />
       </ProductLayout1>
-    </Layout>
+    </Layout5>
   );
 };
 

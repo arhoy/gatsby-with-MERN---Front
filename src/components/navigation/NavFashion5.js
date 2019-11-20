@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+
 import { Link } from 'gatsby';
 
 import { FaOpencart, FaAlignRight, FaTimes } from 'react-icons/fa';
 
 import styled from '@emotion/styled';
-import netlifyIdentity from 'netlify-identity-widget';
 
 import MyMenu2 from '../menus/MyMenu2';
 
@@ -138,15 +138,10 @@ const SearchContainerMobile = styled.div`
 `;
 
 const NavFashion5 = () => {
-  useEffect(() => {
-    netlifyIdentity.init();
-  }, []);
-
   const [mobileMenuOpen, setMobileMenu] = useState(false);
 
   const mobileMenuHandler = () => {
     setMobileMenu(prevState => !prevState);
-    console.log('I was clicked!');
   };
 
   return (
@@ -156,7 +151,7 @@ const NavFashion5 = () => {
           <LogoLink to="/">
             <i>
               <LogoSpan2>Fashion</LogoSpan2>
-              <LogoSpan>Two</LogoSpan>
+              <LogoSpan>Five</LogoSpan>
             </i>
           </LogoLink>
         </Logo>

@@ -1,14 +1,16 @@
+// used as templates refer to MailChimpEmailForm1 for full use
+
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 
-import { InputStyle1 } from '../reusableStyles/inputs/Input';
+import { InputStyle1 } from '../../reusableStyles/inputs/Input';
 
 import {
   SimpleAlertRed,
   SimpleAlertGreen,
-} from '../reusableStyles/alerts/SimpleAlerts';
+} from '../../reusableStyles/alerts/SimpleAlerts';
 import {
   Button1,
   Blurb,
@@ -16,19 +18,17 @@ import {
   SubContainer,
   Closed,
   StyledFormTemplate1Purple,
-} from './form-styles/StyledForms';
-import subscriberPopupHelper from '../../utils/popups/subscriberPopupHelper';
+} from '../form-styles/StyledForms';
 
-const MailChimpEmailForm1 = ({ timeToPopUp }) => {
+const MailChimpForm1 = ({ timeToPopUp }) => {
   const [email, setEmail] = useState('');
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       // sets local storage
-      subscriberPopupHelper(setShowForm);
     }, timeToPopUp);
     return () => clearTimeout(timer);
   }, []);
@@ -104,4 +104,4 @@ const MailChimpEmailForm1 = ({ timeToPopUp }) => {
   }
 };
 
-export default MailChimpEmailForm1;
+export default MailChimpForm1;

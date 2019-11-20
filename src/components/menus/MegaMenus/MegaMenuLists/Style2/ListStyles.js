@@ -32,6 +32,18 @@ const MegaMenuSpan = styled.span`
 
 const MegaMenuLink = styled(NoStyleLink)``;
 
+const MegaMenuButton = styled.button`
+  text-decoration: none;
+  color: ${props => props.theme.colors.black};
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 1.8rem;
+  &:hover {
+    font-weight: bold;
+  }
+`;
+
 const MegaMenuPictureContainer = styled.div`
   position: absolute;
   bottom: 0;
@@ -47,6 +59,7 @@ export {
   MegaMenuUl,
   MegaMenuLi,
   MegaMenuLink,
+  MegaMenuButton,
   MegaMenuSpan,
   MegaMenuPictureContainer,
   MegaMenuPicture,

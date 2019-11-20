@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import { ButtonStyle2 } from '../../reusableStyles/buttons/Button';
 import { H2, P } from '../../reusableStyles/typography/Typography';
+import { FaTimes } from 'react-icons/fa';
 
-const StyledForm1 = styled.form`
+const StyledFormTemplate1 = styled.form`
   position: fixed;
   transform: translate(-50%, -50%);
   padding: 3rem;
@@ -26,13 +27,14 @@ const StyledForm1 = styled.form`
   }
 `;
 
-const StyledForm2 = styled(StyledForm1)`
+const StyledFormTemplate1Purple = styled(StyledFormTemplate1)`
   background: linear-gradient(#4e54c8, #8f94fb);
 `;
 
 const Button1 = styled(ButtonStyle2)`
   border-radius: 3px;
   padding: 1rem;
+  cursor: pointer;
 `;
 
 const StyledH2 = styled(H2)`
@@ -59,4 +61,22 @@ const SubContainer = styled.div`
   }
 `;
 
-export { StyledForm1, StyledForm2, Button1, StyledH2, Blurb, SubContainer };
+const Closed = styled(FaTimes)`
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  padding: 2px;
+  font-size: 3rem;
+  cursor: pointer;
+`;
+
+export {
+  StyledFormTemplate1,
+  StyledFormTemplate1Purple,
+  Button1,
+  StyledH2,
+  Blurb,
+  SubContainer,
+  Closed,
+};

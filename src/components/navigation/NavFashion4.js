@@ -129,7 +129,6 @@ const NavFashion4 = () => {
 
   const mobileMenuHandler = () => {
     setMobileMenu(prevState => !prevState);
-    console.log('I was clicked!');
   };
 
   return (

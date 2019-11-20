@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaPlug } from 'react-icons/fa';
 
-import Layout from '../components/layouts/Layout';
+import Layout5 from '../components/layouts/Layout5';
 import SEO from '../hooks/SEO';
 import styled from '@emotion/styled';
 import { H1, P } from '../components/reusableStyles/typography/Typography';
@@ -24,7 +24,7 @@ const StyledIcon = styled(FaPlug)`
 `;
 const NotFound = () => {
   return (
-    <Layout>
+    <Layout5>
       <SEO
         title="NOT FOUND PAGE"
         description="The page you are looking for has returned 404 not found"
@@ -36,7 +36,7 @@ const NotFound = () => {
           <StyledIcon />
         </Container>
       </Section>
-    </Layout>
+    </Layout5>
   );
 };
 

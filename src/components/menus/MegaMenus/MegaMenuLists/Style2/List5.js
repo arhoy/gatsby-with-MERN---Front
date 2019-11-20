@@ -1,15 +1,20 @@
 // NO STYLES IN THIS FILE! Import from MegaMenuLists/ListStyles
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import {
   MegaMenuUl,
   MegaMenuLi,
   MegaMenuLink,
   MegaMenuSpan,
+  MegaMenuButton,
 } from './ListStyles';
 
 import ListHeader from './ListHeader';
+import { logout } from '../../../../../actions/auth';
 
-const List5 = () => {
+const List5 = ({ auth: { isAuthenticated, user }, logout }) => {
   return (
     <>
       <MegaMenuUl>
@@ -58,23 +63,53 @@ const List5 = () => {
           <MegaMenuLink to="/demos/fashion-five">Fashion Five</MegaMenuLink>
         </MegaMenuLi>
       </MegaMenuUl>
-      <MegaMenuUl>
-        <ListHeader title="Other" />
-        <MegaMenuLi>
-          <MegaMenuLink to="/pants">Styles</MegaMenuLink>
-        </MegaMenuLi>
-        <MegaMenuLi>
-          <MegaMenuLink to="/pants">Porfolio</MegaMenuLink>
-        </MegaMenuLi>
-        <MegaMenuLi>
-          <MegaMenuLink to="/pants">About Me</MegaMenuLink>
-        </MegaMenuLi>
-        <MegaMenuLi>
-          <MegaMenuLink to="/pants">Contact</MegaMenuLink>
-        </MegaMenuLi>
-      </MegaMenuUl>
+
+      {isAuthenticated ? (
+        <MegaMenuUl>
+          <ListHeader title={` Hello ${user.name} `} />
+
+          <MegaMenuLi>
+            <MegaMenuLink to="/app">App</MegaMenuLink>
+          </MegaMenuLi>
+          <MegaMenuLi>
+            <MegaMenuLink to="/app">Dashboard</MegaMenuLink>
+          </MegaMenuLi>
+          <MegaMenuLi>
+            <MegaMenuButton onClick={() => logout()}>Logout</MegaMenuButton>
+          </MegaMenuLi>
+        </MegaMenuUl>
+      ) : (
+        <MegaMenuUl>
+          <ListHeader title="Account" />
+
+          <MegaMenuLi>
+            <MegaMenuLink to="/app">App</MegaMenuLink>
+          </MegaMenuLi>
+          <MegaMenuLi>
+            <MegaMenuLink to="/app">Dashboard</MegaMenuLink>
+          </MegaMenuLi>
+          <MegaMenuLi>
+            <MegaMenuLink to="/app/register">Register</MegaMenuLink>
+          </MegaMenuLi>
+          <MegaMenuLi>
+            <MegaMenuLink to="/app/login">Sign In</MegaMenuLink>
+          </MegaMenuLi>
+        </MegaMenuUl>
+      )}
     </>
   );
 };
 
-export default List5;
+List5.propTypes = {
+  auth: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(
+  mapStateToProps,
+  { logout },
+)(List5);

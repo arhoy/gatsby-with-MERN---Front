@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Layout from '../../components/layouts/Layout';
+import Layout5 from '../../components/layouts/Layout5';
 import { P, A } from '../../components/reusableStyles/typography/Typography';
 import { Section } from '../../components/reusableStyles/sections/Sections';
 
@@ -10,7 +10,7 @@ import Map1 from '../../components/mapbox/Map1';
 
 const mapboxExamples = () => {
   return (
-    <Layout>
+    <Layout5>
       <SEO
         title="Gatsby Mapbox Examples"
         description="Using Gatsby Mapbox Demos"
@@ -35,7 +35,7 @@ const mapboxExamples = () => {
           height="60rem"
         />
       </Section>
-    </Layout>
+    </Layout5>
   );
 };
 
