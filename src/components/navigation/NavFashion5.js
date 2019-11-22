@@ -185,10 +185,8 @@ const NavFashion5 = () => {
           <Search />
         </SearchContainerComputer>
 
-        <Cart className="snipcart-checkout">
-          <span className="snipcart-items-count"></span>
-          <span className="snipcart-total-price"></span>
-        </Cart>
+        <Cart className="snipcart-checkout"></Cart>
+
         <BurgerIcon onClick={mobileMenuHandler} />
         {mobileMenuOpen ? (
           <>

@@ -40,6 +40,7 @@ import prependIf from '../helpers/prependIf';
 import ContentfulProductReviews from '../components/reviews/ContentfulProductReviews';
 import ProductBranding from '../components/products/ProductBranding';
 import OrderReviews from '../components/order-review/OrderReviews';
+import OrderReviewForm from '../components/order-review/OrderReviewForm';
 
 // run template query
 export const query = graphql`
@@ -202,6 +203,7 @@ const BagTemplate = ({
         </SectionPrimaryTransparent>
       ) : null}
       <Section>
+        <OrderReviewForm slug={productSlug} />
         <OrderReviews slug={productSlug} />
       </Section>
     </Layout5>

@@ -16,10 +16,10 @@ const Dashboard = ({
   }, [getCurrentProfile]);
   return (
     <div>
-      <h1>Hello {user.name} </h1>
+      <h1>Hello {user && user.name} </h1>
       <p>
         Member Since{' '}
-        <Moment format="MMM Do YYYY">{user.user_created_date}</Moment>
+        <Moment format="MMM Do YYYY">{user && user.user_created_date}</Moment>
       </p>
       This is your private dashboard
       <p> You are a buyer / seller</p>
@@ -27,7 +27,8 @@ const Dashboard = ({
       <br />
       <hr />
       <h1> Your profile</h1>
-      {profile ? (
+      {loading && <span>Loading...</span>}
+      {!loading && profile ? (
         <div>
           <pre> {JSON.stringify(profile, null, 2)} </pre>
           <button onClick={() => deleteProfile()}> Delete Profile </button>

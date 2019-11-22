@@ -64,7 +64,7 @@ const List5 = ({ auth: { isAuthenticated, user }, logout }) => {
         </MegaMenuLi>
       </MegaMenuUl>
 
-      {isAuthenticated ? (
+      {isAuthenticated && user ? (
         <MegaMenuUl>
           <ListHeader title={` Hello ${user.name} `} />
 
@@ -72,7 +72,7 @@ const List5 = ({ auth: { isAuthenticated, user }, logout }) => {
             <MegaMenuLink to="/app">App</MegaMenuLink>
           </MegaMenuLi>
           <MegaMenuLi>
-            <MegaMenuLink to="/app">Dashboard</MegaMenuLink>
+            <MegaMenuLink to="/app/dashboard">Dashboard</MegaMenuLink>
           </MegaMenuLi>
           <MegaMenuLi>
             <MegaMenuButton onClick={() => logout()}>Logout</MegaMenuButton>
@@ -86,7 +86,7 @@ const List5 = ({ auth: { isAuthenticated, user }, logout }) => {
             <MegaMenuLink to="/app">App</MegaMenuLink>
           </MegaMenuLi>
           <MegaMenuLi>
-            <MegaMenuLink to="/app">Dashboard</MegaMenuLink>
+            <MegaMenuLink to="/app/dashboard">Dashboard</MegaMenuLink>
           </MegaMenuLi>
           <MegaMenuLi>
             <MegaMenuLink to="/app/register">Register</MegaMenuLink>

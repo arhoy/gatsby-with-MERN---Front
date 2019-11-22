@@ -32,7 +32,7 @@ const MegaMenuSpan = styled.span`
 
 const MegaMenuLink = styled(NoStyleLink)``;
 
-const MegaMenuButton = styled.button`
+const MegaMenuButton = styled.span`
   text-decoration: none;
   color: ${props => props.theme.colors.black};
   outline: none;

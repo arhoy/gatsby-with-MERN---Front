@@ -1,4 +1,4 @@
-import { GET_REVIEWS, REVIEW_ERROR } from '../actions/types';
+import { GET_REVIEWS, REVIEW_ERROR, ADD_REVIEW } from '../actions/types';
 
 const initialState = {
   reviews: [],
@@ -10,6 +10,12 @@ const initialState = {
 export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case ADD_REVIEW:
+      return {
+        ...state,
+        reviews: [payload, ...state.reviews.data],
+        loading: false,
+      };
     case GET_REVIEWS:
       return {
         ...state,
