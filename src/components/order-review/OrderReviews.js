@@ -19,11 +19,9 @@ const OrderReviews = ({
     <>
       <h1>This is the dynamic order reviews</h1>
 
-      {reviews.data &&
-        reviews.data.length > 0 &&
-        reviews.data.map(review => (
-          <OrderReview key={review._id} review={review} />
-        ))}
+      {reviews &&
+        reviews.length > 0 &&
+        reviews.map(review => <OrderReview key={review._id} review={review} />)}
     </>
   );
 };

@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-import { GET_REVIEWS, REVIEW_ERROR, ADD_REVIEW } from './types';
+import {
+  GET_REVIEWS,
+  REVIEW_ERROR,
+  ADD_REVIEW,
+  DELETE_REVIEW,
+  UPDATE_LIKES,
+} from './types';
 import { setAlert } from './alert';
 
 // get all the reviews (PUBLIC)
@@ -75,6 +81,62 @@ export const addReviewForSlug = (formData, productSlug) => async dispatch => {
     dispatch({
       type: REVIEW_ERROR,
       payload: { msg: error.response.status },
+    });
+  }
+};
+
+// delete review
+export const deleteReview = reviewId => async dispatch => {
+  try {
+    await axios.delete(
+      `${process.env.SERVER_HOST_ROOT}/api/reviews/review/${reviewId}`,
+    );
+    dispatch({
+      type: DELETE_REVIEW,
+      payload: reviewId,
+    });
+    dispatch(setAlert('Post has been removed', 'success'));
+  } catch (err) {
+    dispatch({
+      type: REVIEW_ERROR,
+      payload: { msg: 'Not able to delete review' },
+    });
+  }
+};
+
+// Add like
+export const addLike = reviewId => async dispatch => {
+  try {
+    const res = await axios.put(
+      `${process.env.SERVER_HOST_ROOT}/api/reviews/like/${reviewId}`,
+    );
+
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { reviewId, likes: res.data },
+    });
+  } catch (err) {
+    dispatch({
+      type: REVIEW_ERROR,
+      payload: { msg: err.response.status },
+    });
+  }
+};
+
+// remove like
+export const removeLike = reviewId => async dispatch => {
+  try {
+    const res = await axios.put(
+      `${process.env.SERVER_HOST_ROOT}/api/reviews/unlike/${reviewId}`,
+    );
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { reviewId, likes: res.data },
+    });
+  } catch (err) {
+    dispatch({
+      type: REVIEW_ERROR,
+      payload: { msg: err.response.status },
     });
   }
 };

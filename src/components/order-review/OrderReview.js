@@ -1,12 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import moment from 'moment';
 import renderRating from '../../helpers/renderRating';
 import { FaUserCircle } from 'react-icons/fa';
+import { addLike, removeLike, deleteReview } from '../../actions/review';
 
 const ReviewContainer = styled.div`
   margin: 1rem;
   padding: 1rem;
+`;
+
+const ReviewSubDiv = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  & > * {
+    margin: 0.5rem;
+  }
 `;
 const ReviewRating = styled.div``;
 const ReviewTitle = styled.h3`
@@ -28,6 +39,14 @@ const ReviewDate = styled.div`
   font-size: 1.4rem;
 `;
 
+const ReviewButton = styled.button`
+  cursor: pointer;
+`;
+
+const ReviewLikes = styled.span`
+  font-weight: bold;
+`;
+
 const UserIcon = styled(FaUserCircle)`
   font-size: 5rem;
   color: ${props => props.theme.colors.primary};
@@ -36,10 +55,31 @@ const UserIcon = styled(FaUserCircle)`
 
 const Customer = styled.span``;
 
-const OrderReview = ({ review }) => {
+const OrderReview = ({ review, addLike, removeLike, deleteReview, auth }) => {
+  // find user likes helper function
+  const findUserLikes = likes => {
+    if (likes.filter(like => like.user === auth.user._id).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  // call deleteReview action
+  const deleteReviewHandler = reviewId => {
+    deleteReview(reviewId);
+  };
+  // call addLike action
+  const toggleLikeHandler = reviewId => {
+    if (findUserLikes(review.likes)) {
+      removeLike(reviewId);
+    } else {
+      addLike(reviewId);
+    }
+  };
+
   return (
     <>
-      <pre>{JSON.stringify(review, null, 2)}</pre>
       <ReviewContainer key={review.id}>
         <ReviewHeader>
           <UserIcon />
@@ -53,9 +93,35 @@ const OrderReview = ({ review }) => {
         </ReviewDate>
         <ReviewRating> {renderRating(review.rating)} </ReviewRating>
         <ReviewText>{review.description}</ReviewText>
+        <ReviewSubDiv>
+          <ReviewButton onClick={deleteReviewHandler.bind(this, review._id)}>
+            Delete Review
+          </ReviewButton>
+          <ReviewButton onClick={toggleLikeHandler.bind(this, review._id)}>
+            Add Like Button
+          </ReviewButton>
+          <ReviewLikes>
+            Likes {` `} {review.likes.length}
+          </ReviewLikes>
+        </ReviewSubDiv>
       </ReviewContainer>
     </>
   );
 };
 
-export default OrderReview;
+OrderReview.propTypes = {
+  deleteReview: PropTypes.func.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  review: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(
+  mapStateToProps,
+  { addLike, removeLike, deleteReview },
+)(OrderReview);

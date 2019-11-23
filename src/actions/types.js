@@ -29,3 +29,7 @@ export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const REVIEW_ERROR = 'REVIEW_ERROR';
 export const ADD_REVIEW = 'ADD_REVIEW';
+export const DELETE_REVIEW = 'DELETE_REVIEW';
+
+// review likes
+export const UPDATE_LIKES = 'UPDATE_LIKES';
