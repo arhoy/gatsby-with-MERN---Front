@@ -2,6 +2,7 @@ import {
   GET_REVIEWS,
   REVIEW_ERROR,
   ADD_REVIEW,
+  EDIT_REVIEW,
   DELETE_REVIEW,
   UPDATE_LIKES,
 } from '../actions/types';
@@ -20,6 +21,22 @@ export default function(state = initialState, action) {
       return {
         ...state,
         reviews: [payload, ...state.reviews],
+        loading: false,
+      };
+
+    case EDIT_REVIEW:
+      return {
+        ...state,
+        reviews: state.reviews.map(review =>
+          review._id === payload._id
+            ? {
+                ...review,
+                title: payload.title,
+                description: payload.description,
+                rating: payload.rating,
+              }
+            : review,
+        ),
         loading: false,
       };
     case GET_REVIEWS:

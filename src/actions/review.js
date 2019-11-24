@@ -4,6 +4,7 @@ import {
   GET_REVIEWS,
   REVIEW_ERROR,
   ADD_REVIEW,
+  EDIT_REVIEW,
   DELETE_REVIEW,
   UPDATE_LIKES,
 } from './types';
@@ -66,6 +67,42 @@ export const addReviewForSlug = (formData, productSlug) => async dispatch => {
     });
 
     // return true once successfully added review
+    return true;
+  } catch (error) {
+    // if user not logged in return error
+    if (error.response.status === 401)
+      dispatch(setAlert('User must be logged in to add review!', 'danger'));
+
+    // check form errors / validation express
+    const errors = error.response.data.errors;
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: REVIEW_ERROR,
+      payload: { msg: error.response.status },
+    });
+  }
+};
+
+// edit the review
+export const editReview = (formData, reviewId) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  try {
+    const res = await axios.put(
+      `${process.env.SERVER_HOST_ROOT}/api/reviews/review/${reviewId}`,
+      formData,
+      config,
+    );
+    dispatch({
+      type: EDIT_REVIEW,
+      payload: res.data,
+    });
     return true;
   } catch (error) {
     // if user not logged in return error

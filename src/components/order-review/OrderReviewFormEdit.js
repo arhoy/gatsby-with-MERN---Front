@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { connect } from 'react-redux';
-import { addReviewForSlug, editReview } from '../../actions/review';
+import { addReviewForSlug } from '../../actions/review';
 import PropTypes from 'prop-types';
 import PopupAlerts from '../reusableStyles/alerts/PopupAlerts';
 
@@ -32,17 +32,11 @@ const Form = styled.form`
 `;
 
 // set edited to true if the form is being edited
-const OrderReviewForm = ({
-  addReviewForSlug,
-  slug,
-  edit,
-  editReview,
-  review,
-}) => {
+const OrderReviewFormEdit = ({ addReviewForSlug, slug }) => {
   const [formData, setFormData] = useState({
-    title: edit ? `${review.title}` : '',
-    description: edit ? `${review.description}` : '',
-    rating: edit ? `${review.rating}` : '',
+    title: '',
+    description: '',
+    rating: '',
   });
 
   const { title, description, rating } = formData;
@@ -53,12 +47,7 @@ const OrderReviewForm = ({
   const onSubmit = async e => {
     e.preventDefault();
     // call addReview for slug action
-    let res;
-    if (edit) {
-      res = await editReview(formData, review.id);
-    } else {
-      res = await addReviewForSlug(formData, slug);
-    }
+    const res = await addReviewForSlug(formData, slug);
 
     // clear the form data if the data is submitted and cleared
     if (res) {
@@ -68,6 +57,7 @@ const OrderReviewForm = ({
 
   return (
     <div>
+      <h1 id="OrderReviewFormEdit"> This is the review form</h1>
       <Form onSubmit={e => onSubmit(e)}>
         <input
           type="text"
@@ -109,11 +99,15 @@ const OrderReviewForm = ({
   );
 };
 
-OrderReviewForm.propTypes = {
+OrderReviewFormEdit.propTypes = {
   addReviewForSlug: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = state => ({
+  review: state.review,
+});
+
 export default connect(
-  null,
-  { addReviewForSlug, editReview },
-)(OrderReviewForm);
+  mapStateToProps,
+  { addReviewForSlug },
+)(OrderReviewFormEdit);

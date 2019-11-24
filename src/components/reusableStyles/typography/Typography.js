@@ -24,6 +24,16 @@ const H2 = styled.h2`
   color: ${props => props.theme.colors.black};
 `;
 
+const H3 = styled.h3`
+  font-size: 2.6rem;
+  color: ${props => props.theme.colors.black};
+`;
+
+const H4 = styled.h4`
+  font-size: 2.2rem;
+  color: ${props => props.theme.colors.black};
+`;
+
 const A = styled.a`
   color: ${props => props.theme.colors.black};
   text-decoration: none;
@@ -47,4 +57,4 @@ const P = styled.p`
   padding: 1rem 0rem;
 `;
 
-export { H1, H2, A, Li, Ul, Span, Bold, P, ProductPageH1 };
+export { H1, H2, H3, H4, A, Li, Ul, Span, Bold, P, ProductPageH1 };

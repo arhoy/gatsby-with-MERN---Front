@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import moment from 'moment';
+
 import renderRating from '../../helpers/renderRating';
 import { FaUserCircle } from 'react-icons/fa';
-import { addLike, removeLike, deleteReview } from '../../actions/review';
+import {
+  addLike,
+  removeLike,
+  deleteReview,
+  editReview,
+} from '../../actions/review';
+import OrderReviewForm from './OrderReviewForm';
 
 const ReviewContainer = styled.div`
   margin: 1rem;
@@ -55,7 +62,16 @@ const UserIcon = styled(FaUserCircle)`
 
 const Customer = styled.span``;
 
-const OrderReview = ({ review, addLike, removeLike, deleteReview, auth }) => {
+const OrderReview = ({
+  review,
+  addLike,
+  removeLike,
+  deleteReview,
+  editReview,
+  auth,
+}) => {
+  const [showOrderForm, setShowOrderForm] = useState(false);
+
   // find user likes helper function
   const findUserLikes = likes => {
     if (likes.filter(like => like.user === auth.user._id).length > 0) {
@@ -68,6 +84,10 @@ const OrderReview = ({ review, addLike, removeLike, deleteReview, auth }) => {
   // call deleteReview action
   const deleteReviewHandler = reviewId => {
     deleteReview(reviewId);
+  };
+  // call editReview action
+  const showEditForm = () => {
+    setShowOrderForm(preShowOrderForm => !preShowOrderForm);
   };
   // call addLike action
   const toggleLikeHandler = reviewId => {
@@ -97,6 +117,9 @@ const OrderReview = ({ review, addLike, removeLike, deleteReview, auth }) => {
           <ReviewButton onClick={deleteReviewHandler.bind(this, review._id)}>
             Delete Review
           </ReviewButton>
+
+          <ReviewButton onClick={showEditForm}>Edit Form</ReviewButton>
+
           <ReviewButton onClick={toggleLikeHandler.bind(this, review._id)}>
             Add Like Button
           </ReviewButton>
@@ -104,6 +127,8 @@ const OrderReview = ({ review, addLike, removeLike, deleteReview, auth }) => {
             Likes {` `} {review.likes.length}
           </ReviewLikes>
         </ReviewSubDiv>
+
+        {showOrderForm ? <OrderReviewForm edit={true} review={review} /> : null}
       </ReviewContainer>
     </>
   );
@@ -113,6 +138,7 @@ OrderReview.propTypes = {
   deleteReview: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
+  editReview: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   review: PropTypes.object.isRequired,
 };
@@ -123,5 +149,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addLike, removeLike, deleteReview },
+  { addLike, removeLike, deleteReview, editReview },
 )(OrderReview);

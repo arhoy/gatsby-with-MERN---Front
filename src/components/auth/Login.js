@@ -5,6 +5,11 @@ import { setAlert } from '../../actions/alert';
 import { login } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import { Redirect } from '@reach/router';
+import { Section } from '../reusableStyles/sections/Sections';
+import { H1 } from '../reusableStyles/typography/Typography';
+import { FormStyle1 } from '../reusableStyles/form/Form';
+import { InputStyle1 } from '../reusableStyles/inputs/Input';
+import { ButtonStyle2 } from '../reusableStyles/buttons/Button';
 
 const Login = ({ setAlert, login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -25,10 +30,10 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
   // redirect if authenticated.
   if (isAuthenticated) return <Redirect to="/app/dashboard" noThrow />;
   return (
-    <div>
-      <h1> Login Today</h1>
-      <form onSubmit={onSubmitHandler}>
-        <input
+    <Section>
+      <H1> Login Today</H1>
+      <FormStyle1 onSubmit={onSubmitHandler}>
+        <InputStyle1
           onChange={e => handleChange(e)}
           type="email"
           placeholder="Your Email"
@@ -36,7 +41,7 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
           name="email"
           required
         />
-        <input
+        <InputStyle1
           onChange={e => handleChange(e)}
           type="password"
           placeholder="Your Password"
@@ -46,9 +51,9 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
           required
         />
 
-        <button type="submit">Login</button>
-      </form>
-    </div>
+        <ButtonStyle2 type="submit">Login</ButtonStyle2>
+      </FormStyle1>
+    </Section>
   );
 };
 

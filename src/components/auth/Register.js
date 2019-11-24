@@ -5,6 +5,11 @@ import { navigate } from 'gatsby';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
+import { InputStyle1 } from '../reusableStyles/inputs/Input';
+import { ButtonStyle2 } from '../reusableStyles/buttons/Button';
+import { FormStyle1 } from '../reusableStyles/form/Form';
+import { H1 } from '../reusableStyles/typography/Typography';
+import { Section } from '../reusableStyles/sections/Sections';
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -32,10 +37,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   if (isAuthenticated) return navigate('/app');
 
   return (
-    <div>
-      <h1> Register Today</h1>
-      <form onSubmit={onSubmitHandler}>
-        <input
+    <Section>
+      <H1> Register Today</H1>
+      <FormStyle1 onSubmit={onSubmitHandler}>
+        <InputStyle1
           onChange={e => handleChange(e)}
           type="text"
           placeholder="Your Full Name"
@@ -43,7 +48,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           name="name"
           required
         />
-        <input
+        <InputStyle1
           onChange={e => handleChange(e)}
           type="email"
           placeholder="Your Email"
@@ -51,7 +56,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           name="email"
           required
         />
-        <input
+        <InputStyle1
           onChange={e => handleChange(e)}
           type="password"
           placeholder="Your Password"
@@ -60,7 +65,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           minLength={6}
           required
         />
-        <input
+        <InputStyle1
           onChange={e => handleChange(e)}
           type="password"
           placeholder="Confirm Password"
@@ -69,11 +74,11 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           minLength={6}
           required
         />
-        <button type="submit" className="btn btn-transparent">
+        <ButtonStyle2 type="submit" className="btn btn-transparent">
           Register
-        </button>
-      </form>
-    </div>
+        </ButtonStyle2>
+      </FormStyle1>
+    </Section>
   );
 };
 
