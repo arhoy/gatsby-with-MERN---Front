@@ -7,7 +7,7 @@ import { setAlert } from './alert';
 export const getCurrentProfile = () => async dispatch => {
   try {
     const res = await axios.get(
-      `${process.env.SERVER_HOST_ROOT}/api/profile/me`,
+      `${process.env.SERVER_HOST_ROOT}/api/v1/profile/me`,
     );
 
     dispatch({
@@ -33,7 +33,7 @@ export const createProfile = (formData, edit = false) => async dispatch => {
     };
     // route creates profile
     const res = await axios.post(
-      `${process.env.SERVER_HOST_ROOT}/api/profile`,
+      `${process.env.SERVER_HOST_ROOT}/api/v1/profile`,
       formData,
       config,
     );
@@ -57,7 +57,7 @@ export const createProfile = (formData, edit = false) => async dispatch => {
 export const deleteProfile = () => async dispatch => {
   try {
     if (window.confirm('Are you sure you want to delete profile?')) {
-      await axios.delete(`${process.env.SERVER_HOST_ROOT}/api/profile`);
+      await axios.delete(`${process.env.SERVER_HOST_ROOT}/api/v1/profile`);
       dispatch({
         type: CLEAR_PROFILE,
       });

@@ -6,9 +6,8 @@ export const Profile = ({ profile }) => {
   return (
     <>
       <H4>Interests</H4>
-      {profile.interests.map(interest => (
-        <Tag>{interest}</Tag>
-      ))}
+      {profile.interests &&
+        profile.interests.map(interest => <Tag>{interest}</Tag>)}
       <H4>Location</H4>
       <div>{profile.location}</div>
       <H4>Phone number</H4>

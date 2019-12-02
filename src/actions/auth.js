@@ -18,12 +18,16 @@ export const loadUser = () => async dispatch => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get(`${process.env.SERVER_HOST_ROOT}/api/auth`);
+    const res = await axios.get(
+      `${process.env.SERVER_HOST_ROOT}/api/v1/auth/me`,
+    );
+    console.log('res data from auth me is ', res.data);
     dispatch({
       type: USER_LOADED,
       payload: res.data,
     });
   } catch (error) {
+    console.error('FUCKING ERROR', error);
     dispatch({
       type: AUTH_ERROR,
     });
@@ -42,7 +46,7 @@ export const register = ({ name, email, password }) => async dispatch => {
 
   try {
     const res = await axios.post(
-      `${process.env.SERVER_HOST_ROOT}/api/users`,
+      `${process.env.SERVER_HOST_ROOT}/api/v1/auth/register`,
       body,
       config,
     );
@@ -78,7 +82,7 @@ export const login = (email, password) => async dispatch => {
 
   try {
     const res = await axios.post(
-      `${process.env.SERVER_HOST_ROOT}/api/auth`,
+      `${process.env.SERVER_HOST_ROOT}/api/v1/auth/login`,
       body,
       config,
     );
