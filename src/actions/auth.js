@@ -21,7 +21,7 @@ export const loadUser = () => async dispatch => {
     const res = await axios.get(
       `${process.env.SERVER_HOST_ROOT}/api/v1/auth/me`,
     );
-    console.log('res data from auth me is ', res.data);
+
     dispatch({
       type: USER_LOADED,
       payload: res.data,

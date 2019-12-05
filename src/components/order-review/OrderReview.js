@@ -1,3 +1,4 @@
+// Product Slug Order Review
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -105,7 +106,7 @@ const OrderReview = ({
           <UserIcon />
           <div>
             <ReviewTitle>{review.title}</ReviewTitle>
-            <Customer> {review.user.name} </Customer>
+            <Customer>{review.user ? review.user.name : 'Anonymous'}</Customer>
           </div>
         </ReviewHeader>
         <ReviewDate>
