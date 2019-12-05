@@ -68,8 +68,6 @@ export const addReviewForSlug = (formData, productSlug) => async dispatch => {
       payload: res.data,
     });
 
-    // return true once successfully added review
-    console.log('addded review!');
     return true;
   } catch (error) {
     // if user not logged in return error

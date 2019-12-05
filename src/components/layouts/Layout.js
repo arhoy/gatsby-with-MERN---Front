@@ -14,6 +14,9 @@ import Footer from './Footer';
 import { loadUser } from '../../actions/auth';
 import setAuthToken from '../../utils/setAuthToken';
 
+// import local storage
+import { getLocalStorage } from '../../utils/localStorage';
+
 const theme = {
   colors: {
     primary: 'rgb(92, 52, 145)',
@@ -98,8 +101,8 @@ const FullFooterLayout = styled.footer`
 `;
 
 // check and load user from local storage
-if (typeof window !== undefined && localStorage.token) {
-  setAuthToken(localStorage.token);
+if (typeof window !== undefined) {
+  setAuthToken(getLocalStorage());
 }
 
 const Layout = ({ children, full }) => {
