@@ -12,10 +12,6 @@ import store from '../../store';
 import '../../scss/main.scss';
 import Footer from './Footer';
 import { loadUser } from '../../actions/auth';
-import setAuthToken from '../../utils/setAuthToken';
-
-// import local storage
-import { getLocalStorage } from '../../utils/localStorage';
 
 const theme = {
   colors: {

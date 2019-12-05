@@ -56,9 +56,7 @@ const List5 = ({ auth: { isAuthenticated, user }, logout }) => {
         <MegaMenuLi>
           <MegaMenuLink to="/demos/fashion-three">Fashion Three</MegaMenuLink>
         </MegaMenuLi>
-        <MegaMenuLi>
-          <MegaMenuLink to="/demos/fashion-four">Fashion Four</MegaMenuLink>
-        </MegaMenuLi>
+
         <MegaMenuLi>
           <MegaMenuLink to="/demos/fashion-five">Fashion Five</MegaMenuLink>
         </MegaMenuLi>
