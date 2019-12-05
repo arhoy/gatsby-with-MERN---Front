@@ -15,6 +15,8 @@ import setAuthToken from '../../utils/setAuthToken';
 import '../../scss/main.scss';
 import Footer from './Footer';
 
+// import get local storage from
+
 const theme = {
   colors: {
     primary: 'rgb(92, 52, 145)',

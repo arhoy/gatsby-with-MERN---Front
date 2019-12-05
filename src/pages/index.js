@@ -27,6 +27,8 @@ import MailChimpEmailForm1 from '../components/mailchimp/MailChimpEmailForm1';
 
 import Insta from '../components/Insta';
 
+import { getLocalStorage } from '../utils/localStorage';
+
 const P = styled.p`
   margin: 1.5rem 0rem;
   font-family: Poppins;
@@ -228,6 +230,7 @@ export const query = graphql`
 `;
 
 export default ({ data }) => {
+  console.log('local storage value is', getLocalStorage());
   return (
     <Layout5 full={true}>
       <SEO title="Fashion two" description="Sample Fashion Store" />

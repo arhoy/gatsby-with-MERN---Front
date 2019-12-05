@@ -9,9 +9,7 @@ import { Section, SectionGrey } from '../reusableStyles/sections/Sections';
 import { H2 } from '../reusableStyles/typography/Typography';
 
 const Dashboard = ({
-  user: {
-    user: { data },
-  },
+  user: { user },
   getCurrentProfile,
   deleteProfile,
   profile: { profile, loading },
@@ -23,18 +21,17 @@ const Dashboard = ({
   if (loading) return <div>Loading...</div>;
 
   // set user data object to user variable
-  const user = data;
   return (
     <>
       <Section>
-        <H2>Hello {user && user.name} </H2>
-        <p>Your role is: {user.role} </p>
-        <p>Email: {user.email} </p>
+        <H2>Hello {user && user.data && user.data.name} </H2>
+        <p>Your role is: {user && user.data && user.data.role} </p>
+        <p>Email: {user && user.data && user.data.email} </p>
         <br />
         <p>
           Thank you for being a member since:{' '}
           <Moment format="MMM Do YYYY">
-            {(user && user.createdAt) || 'Unknown'}
+            {(user && user.data && user.data.createdAt) || 'Unknown'}
           </Moment>
         </p>
         This is your private dashboard
