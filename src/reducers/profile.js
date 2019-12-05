@@ -19,7 +19,7 @@ export default function(state = initialState, action) {
     case UPDATE_PROFILE:
       return {
         ...state,
-        profile: payload,
+        profile: payload.data,
         loading: false,
       };
     case CLEAR_PROFILE:
@@ -31,7 +31,7 @@ export default function(state = initialState, action) {
     case PROFILE_ERROR:
       return {
         ...state,
-        error: payload,
+        error: payload.data,
         loading: false,
       };
 

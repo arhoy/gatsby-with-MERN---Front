@@ -7,13 +7,14 @@ export const Profile = ({ profile }) => {
     <>
       <H4>Interests</H4>
       {profile.interests &&
-        profile.interests.map(interest => <Tag>{interest}</Tag>)}
+        profile.interests.map(interest => <Tag key={interest}>{interest}</Tag>)}
+      {profile.interests.length === 0 && 'Not Provided'}
       <H4>Location</H4>
-      <div>{profile.location}</div>
+      <div>{profile.location || 'Not Provided'}</div>
       <H4>Phone number</H4>
-      <div>{profile.phoneNumber}</div>
+      <div>{profile.phoneNumber || 'Not Provided'}</div>
       <H4>About</H4>
-      <div>{profile.about}</div>
+      <div>{profile.about || 'Not Provided'}</div>
     </>
   );
 };
