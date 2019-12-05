@@ -99,7 +99,7 @@ const FullFooterLayout = styled.footer`
 `;
 
 // check and load user from local storage
-if (localStorage.token) {
+if (window !== undefined && localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
