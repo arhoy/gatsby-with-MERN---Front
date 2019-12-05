@@ -230,7 +230,6 @@ export const query = graphql`
 `;
 
 export default ({ data }) => {
-  console.log('local storage value is', getLocalStorage());
   return (
     <Layout5 full={true}>
       <SEO title="Fashion two" description="Sample Fashion Store" />

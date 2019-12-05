@@ -9,7 +9,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  token: typeof window !== undefined ? localStorage.getItem('token') : '',
+  token: '',
   isAuthenticated: null,
   loading: true,
   user: null,

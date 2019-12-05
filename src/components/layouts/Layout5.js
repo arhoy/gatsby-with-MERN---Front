@@ -9,13 +9,10 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import store from '../../store';
 import { loadUser } from '../../actions/auth';
-import setAuthToken from '../../utils/setAuthToken';
 
 // real global scss styles
 import '../../scss/main.scss';
 import Footer from './Footer';
-
-// import get local storage from
 
 const theme = {
   colors: {
@@ -99,11 +96,6 @@ const FooterLayout = styled.footer`
 const FullFooterLayout = styled.footer`
   grid-column: full-start/full-end;
 `;
-
-// check and load user from local storage
-if (typeof window !== undefined && localStorage.token) {
-  setAuthToken(localStorage.token);
-}
 
 const Layout = ({ children, full }) => {
   useEffect(() => {

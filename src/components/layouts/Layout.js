@@ -100,10 +100,7 @@ const FullFooterLayout = styled.footer`
   grid-column: full-start/full-end;
 `;
 
-// check and load user from local storage
-if (typeof window !== undefined) {
-  setAuthToken(getLocalStorage());
-}
+// check and load user from local storage utils
 
 const Layout = ({ children, full }) => {
   useEffect(() => {
