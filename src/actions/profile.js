@@ -56,7 +56,10 @@ export const createProfile = (formData, edit = false) => async dispatch => {
 // delete the profile only or current user
 export const deleteProfile = () => async dispatch => {
   try {
-    if (window.confirm('Are you sure you want to delete profile?')) {
+    if (
+      typeof window &&
+      window.confirm('Are you sure you want to delete profile?')
+    ) {
       await axios.delete(`${process.env.SERVER_HOST_ROOT}/api/v1/profile`);
       dispatch({
         type: CLEAR_PROFILE,

@@ -14,7 +14,7 @@ import setAuthToken from '../utils/setAuthToken';
 // loader user
 export const loadUser = () => async dispatch => {
   // set header
-  if (window !== undefined && localStorage.token) {
+  if (typeof window !== undefined && localStorage.token) {
     setAuthToken(localStorage.token);
   }
   try {
