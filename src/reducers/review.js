@@ -20,7 +20,7 @@ export default function(state = initialState, action) {
     case ADD_REVIEW:
       return {
         ...state,
-        reviews: [payload, ...state.reviews],
+        reviews: [payload.data, ...state.reviews],
         loading: false,
       };
 
@@ -28,12 +28,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         reviews: state.reviews.map(review =>
-          review._id === payload._id
+          review._id === payload.data._id
             ? {
                 ...review,
-                title: payload.title,
-                description: payload.description,
-                rating: payload.rating,
+                title: payload.data.title,
+                description: payload.data.description,
+                rating: payload.data.rating,
               }
             : review,
         ),
@@ -54,7 +54,7 @@ export default function(state = initialState, action) {
     case REVIEW_ERROR:
       return {
         ...state,
-        error: payload,
+        error: payload.error,
         loading: false,
       };
     case UPDATE_LIKES:
@@ -62,7 +62,7 @@ export default function(state = initialState, action) {
         ...state,
         reviews: state.reviews.map(review =>
           review._id === payload.reviewId
-            ? { ...review, likes: payload.likes }
+            ? { ...review, likes: payload.likes.data }
             : review,
         ),
         loading: false,

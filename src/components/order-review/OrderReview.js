@@ -75,7 +75,7 @@ const OrderReview = ({
 
   // find user likes helper function
   const findUserLikes = likes => {
-    if (likes.filter(like => like.user === auth.user._id).length > 0) {
+    if (likes.filter(like => like.user === auth.user.data._id).length > 0) {
       return true;
     } else {
       return false;

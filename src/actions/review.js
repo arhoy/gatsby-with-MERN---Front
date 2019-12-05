@@ -69,16 +69,16 @@ export const addReviewForSlug = (formData, productSlug) => async dispatch => {
     });
 
     // return true once successfully added review
+    console.log('addded review!');
     return true;
   } catch (error) {
     // if user not logged in return error
-    if (error.response.status === 401)
-      dispatch(setAlert('User must be logged in to add review!', 'danger'));
 
     // check form errors / validation express
     const errors = error.response.data.errors;
+
     if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+      dispatch(setAlert(errors.error, 'danger'));
     }
 
     dispatch({
@@ -114,7 +114,7 @@ export const editReview = (formData, reviewId) => async dispatch => {
     // check form errors / validation express
     const errors = error.response.data.errors;
     if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+      dispatch(setAlert(errors.error, 'danger'));
     }
 
     dispatch({
