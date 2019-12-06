@@ -27,8 +27,6 @@ import MailChimpEmailForm1 from '../components/mailchimp/MailChimpEmailForm1';
 
 import Insta from '../components/Insta';
 
-import { getLocalStorage } from '../utils/localStorage';
-
 const P = styled.p`
   margin: 1.5rem 0rem;
   font-family: Poppins;
@@ -64,6 +62,11 @@ const CustomHighlight = styled.span`
   background: ${props => props.theme.colors.primaryTransparent};
 `;
 
+const CustomHighlightPrimary = styled(CustomHighlight)`
+  background: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.white};
+`;
+
 const CenteredH2 = styled(H2)`
   text-align: center;
 `;
@@ -97,17 +100,27 @@ const StyledItalicSpan2 = styled.span`
 const whyFasion = () => (
   <>
     <P>
-      <strong>FashionTwo</strong> a blazingly fast Ecommerce platform powered by
+      <strong>FashionFive</strong> a blazingly fast Ecommerce platform powered
+      by
     </P>
     <P>
       <CustomHighlight> Gatsby </CustomHighlight> +
       <CustomHighlight> Contentful </CustomHighlight> +
-      <CustomHighlight> Snipcart </CustomHighlight>
+      <CustomHighlight> Snipcart </CustomHighlight> +
+      <CustomHighlightPrimary> Node Custom Backend </CustomHighlightPrimary>
     </P>
     <P>
       Faster and more SEO friendy than any frontend WordPress or Shopify site
       created by the vast majority of web design agencies and at a fraction of
       the cost.
+    </P>
+    <P>
+      What is a Node Custom Backend? This website has a backend built on top of
+      Mongo Db Atlas. Here we are able to see the closest stores depending on
+      the users location. Users will be able to add and edit product reviews
+      which other users can like. Users can create profiles and edit their
+      information. All this information will be collected and stored in a custom
+      backend database.
     </P>
   </>
 );
@@ -267,7 +280,7 @@ export default ({ data }) => {
 
       <SectionGrey>
         <Container800>
-          <BasicFeatureSection heading="Why FashionTwo" text={whyFasion()} />
+          <BasicFeatureSection heading="Why FashionFive" text={whyFasion()} />
         </Container800>
       </SectionGrey>
       <Section>
