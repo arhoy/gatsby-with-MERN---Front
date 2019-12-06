@@ -230,9 +230,10 @@ export const query = graphql`
 `;
 
 export default ({ data }) => {
+  console.log('This is the server host', process.env.SERVER_HOST_ROOT)
   return (
     <Layout5 full={true}>
-      <SEO title="Fashion two" description="Sample Fashion Store" />
+      <SEO title="Fashion Five" description="Fashion Store with Backend" />
       <HerosContainer>
         <HeroBackgroundImage fluid={data.picture1.childImageSharp.fluid}>
           <HeroCatchyDiv>
