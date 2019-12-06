@@ -33,7 +33,7 @@ export const getReviews = () => async dispatch => {
 export const getReviewForSlug = productSlug => async dispatch => {
   try {
     const res = await axios.get(
-      `${process.env.GATSBY_SERVER_HOST_ROOT}/${productSlug}`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/reviews/${productSlug}`,
     );
     dispatch({
       type: GET_REVIEWS,
