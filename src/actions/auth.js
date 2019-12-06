@@ -15,12 +15,13 @@ import setAuthToken from '../utils/setAuthToken';
 // loader user
 export const loadUser = () => async dispatch => {
   // set header
+
   if (typeof window !== undefined && localStorage.token) {
     setAuthToken(localStorage.token);
   }
   try {
     const res = await axios.get(
-      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/auth/me`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/auth/me`,
     );
 
     dispatch({
@@ -46,7 +47,7 @@ export const register = ({ name, email, password }) => async dispatch => {
 
   try {
     const res = await axios.post(
-      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/auth/register`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/auth/register`,
       body,
       config,
     );
@@ -82,7 +83,7 @@ export const login = (email, password) => async dispatch => {
 
   try {
     const res = await axios.post(
-      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/auth/login`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/auth/login`,
       body,
       config,
     );

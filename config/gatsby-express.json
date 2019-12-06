@@ -1,0 +1,132 @@
+{
+  "redirects": [],
+  "pages": [
+    {
+      "path": "/articles/the-latest-trends-in-mens-shoes"
+    },
+    {
+      "path": "/articles/the-latest-trends-in-womens-shoes"
+    },
+    {
+      "path": "/products/monnet-lime-green-bag"
+    },
+    {
+      "path": "/products/monnet-baby-blue-handbag"
+    },
+    {
+      "path": "/products/monnet-vantablack-bag"
+    },
+    {
+      "path": "/products/monnet-cloudy-grey-bag"
+    },
+    {
+      "path": "/products/monnet-prince-purple-bag"
+    },
+    {
+      "path": "/products/monnet-ruby-red-bag"
+    },
+    {
+      "path": "/products/monnet-rose-bag"
+    },
+    {
+      "path": "/products/monnet-bomber-blue-bag"
+    },
+    {
+      "path": "/products/cele-stretchy-blue-jeans"
+    },
+    {
+      "path": "/products/st-lun-classic-black-jeans"
+    },
+    {
+      "path": "/products/cele-stretchy-white-jeans"
+    },
+    {
+      "path": "/products/cele-stretchy-black-jeans"
+    },
+    {
+      "path": "/products/isnom-white-high-heel"
+    },
+    {
+      "path": "/products/isnom-dark-red-high-heel"
+    },
+    {
+      "path": "/products/isnom-brown-high-heel"
+    },
+    {
+      "path": "/products/isnom-black-high-heel"
+    },
+    {
+      "path": "/products/vayne-knee-high-boot"
+    },
+    {
+      "path": "/products/vayne-short-leather-boot"
+    },
+    {
+      "path": "/products/six-inch-classic-vayne-heels"
+    },
+    {
+      "path": "/404/"
+    },
+    {
+      "path": "/about/"
+    },
+    {
+      "path": "/app/",
+      "matchPath": "/app/*"
+    },
+    {
+      "path": "/articles/"
+    },
+    {
+      "path": "/bags/"
+    },
+    {
+      "path": "/contact/"
+    },
+    {
+      "path": "/demos/fashion-five/"
+    },
+    {
+      "path": "/demos/fashion-one/"
+    },
+    {
+      "path": "/demos/fashion-three/"
+    },
+    {
+      "path": "/demos/fashion-two/"
+    },
+    {
+      "path": "/examples/carousels/"
+    },
+    {
+      "path": "/examples/mailchimp-forms/"
+    },
+    {
+      "path": "/examples/mapbox-examples/"
+    },
+    {
+      "path": "/examples/navigation-examples/"
+    },
+    {
+      "path": "/"
+    },
+    {
+      "path": "/pants/"
+    },
+    {
+      "path": "/pricing/"
+    },
+    {
+      "path": "/shoes/"
+    },
+    {
+      "path": "/success/"
+    },
+    {
+      "path": "/thank-you/"
+    },
+    {
+      "path": "/404.html"
+    }
+  ]
+}

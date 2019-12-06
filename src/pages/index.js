@@ -230,7 +230,7 @@ export const query = graphql`
 `;
 
 export default ({ data }) => {
-  console.log('This is the server host', process.env.GATSBY_SERVER_HOST_ROOT_ROOT)
+  console.log('This is the server host', process.env.GATSBY_SERVER_HOST_ROOT);
   return (
     <Layout5 full={true}>
       <SEO title="Fashion Five" description="Fashion Store with Backend" />

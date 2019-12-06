@@ -7,7 +7,7 @@ import { setAlert } from './alert';
 export const getCurrentProfile = () => async dispatch => {
   try {
     const res = await axios.get(
-      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/profile/me`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/profile/me`,
     );
 
     dispatch({
@@ -33,7 +33,7 @@ export const createProfile = (formData, edit = false) => async dispatch => {
     };
     // route creates profile
     const res = await axios.post(
-      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/profile`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/profile`,
       formData,
       config,
     );
@@ -60,7 +60,9 @@ export const deleteProfile = () => async dispatch => {
       typeof window &&
       window.confirm('Are you sure you want to delete profile?')
     ) {
-      await axios.delete(`${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/profile`);
+      await axios.delete(
+        `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/profile`,
+      );
       dispatch({
         type: CLEAR_PROFILE,
       });
