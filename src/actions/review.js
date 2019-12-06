@@ -14,7 +14,7 @@ import { setAlert } from './alert';
 export const getReviews = () => async dispatch => {
   try {
     const res = await axios.get(
-      `${process.env.SERVER_HOST_ROOT}/api/v1/reviews`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/reviews`,
     );
 
     dispatch({
@@ -33,7 +33,7 @@ export const getReviews = () => async dispatch => {
 export const getReviewForSlug = productSlug => async dispatch => {
   try {
     const res = await axios.get(
-      `${process.env.SERVER_HOST_ROOT}/api/v1/reviews/${productSlug}`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/reviews/${productSlug}`,
     );
     dispatch({
       type: GET_REVIEWS,
@@ -57,7 +57,7 @@ export const addReviewForSlug = (formData, productSlug) => async dispatch => {
 
   try {
     const res = await axios.post(
-      `${process.env.SERVER_HOST_ROOT}/api/v1/reviews/review/${productSlug}`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/reviews/review/${productSlug}`,
       formData,
       config,
     );
@@ -95,7 +95,7 @@ export const editReview = (formData, reviewId) => async dispatch => {
   };
   try {
     const res = await axios.put(
-      `${process.env.SERVER_HOST_ROOT}/api/v1/reviews/review/${reviewId}`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/reviews/review/${reviewId}`,
       formData,
       config,
     );
@@ -126,7 +126,7 @@ export const editReview = (formData, reviewId) => async dispatch => {
 export const deleteReview = reviewId => async dispatch => {
   try {
     await axios.delete(
-      `${process.env.SERVER_HOST_ROOT}/api/v1/reviews/review/${reviewId}`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/reviews/review/${reviewId}`,
     );
     dispatch({
       type: DELETE_REVIEW,
@@ -145,7 +145,7 @@ export const deleteReview = reviewId => async dispatch => {
 export const addLike = reviewId => async dispatch => {
   try {
     const res = await axios.put(
-      `${process.env.SERVER_HOST_ROOT}/api/v1/reviews/like/${reviewId}`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/reviews/like/${reviewId}`,
     );
 
     dispatch({
@@ -164,7 +164,7 @@ export const addLike = reviewId => async dispatch => {
 export const removeLike = reviewId => async dispatch => {
   try {
     const res = await axios.put(
-      `${process.env.SERVER_HOST_ROOT}/api/v1/reviews/unlike/${reviewId}`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT_ROOT}/api/v1/reviews/unlike/${reviewId}`,
     );
     dispatch({
       type: UPDATE_LIKES,

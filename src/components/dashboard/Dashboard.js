@@ -21,6 +21,7 @@ const Dashboard = ({
   if (loading) return <div>Loading...</div>;
 
   // set user data object to user variable
+
   return (
     <>
       <Section>
