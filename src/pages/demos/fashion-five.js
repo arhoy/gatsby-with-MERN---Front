@@ -19,8 +19,7 @@ import { SimpleNetlifyForm } from '../../components/forms/SimpleNetlifyForm';
 import CatchyBanner from '../../components/reusableStyles/banner/CatchyBanner';
 import BasicFeatureSection from '../../components/features/BasicFeatureSection';
 
-import { ProductLayout1 } from '../../components/products/ProductContainerStyles/ProductContainerStyle';
-import Products from '../../components/products/Products';
+import ProductsWithSearch from '../../components/products/ProductsWithSearch';
 
 import AliceGallery from '../../components/reusableStyles/carousel/AliceGallery';
 
@@ -373,9 +372,11 @@ export default ({ data }) => {
 
       <Section>
         <CenteredH2>Fashion Two Products</CenteredH2>
-        <ProductLayout1>
-          <Products products={getAllProductsHook()} productType="products" />
-        </ProductLayout1>
+
+        <ProductsWithSearch
+          products={getAllProductsHook()}
+          productType="products"
+        />
       </Section>
 
       <HerosContainer>

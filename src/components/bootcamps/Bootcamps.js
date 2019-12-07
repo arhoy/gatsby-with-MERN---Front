@@ -48,7 +48,7 @@ const Bootcamps = ({ getBootcamps, bootcamp: { bootcamps, loading } }) => {
       </select>
       {bootcamps.length > 0 &&
         bootcamps.map(bootcamp => (
-          <Bootcamp key={bootcamp.id} bootcamp={bootcamp} />
+          <Bootcamp key={bootcamp._id} bootcamp={bootcamp} />
         ))}
     </Div>
   );

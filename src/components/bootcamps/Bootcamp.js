@@ -74,7 +74,7 @@ const Bootcamp = ({ bootcamp }) => {
         <>
           {bootcamp.courses &&
             bootcamp.courses.map(course => (
-              <Course>
+              <Course key={course._id}>
                 <h3>
                   <Bold>Course: </Bold> {course.title}
                 </h3>
