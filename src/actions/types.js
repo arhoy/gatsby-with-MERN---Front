@@ -34,3 +34,7 @@ export const DELETE_REVIEW = 'DELETE_REVIEW';
 
 // review likes
 export const UPDATE_LIKES = 'UPDATE_LIKES';
+
+// bootcamps
+export const GET_BOOTCAMPS = 'GET_BOOTCAMPS';
+export const BOOTCAMP_ERROR = 'BOOTCAMP_ERROR';

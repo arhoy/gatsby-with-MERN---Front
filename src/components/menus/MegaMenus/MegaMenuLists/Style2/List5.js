@@ -64,7 +64,9 @@ const List5 = ({ auth: { isAuthenticated, user }, logout }) => {
 
       {isAuthenticated && user ? (
         <MegaMenuUl>
-          <ListHeader title={` Hello ${user.name} `} />
+          <ListHeader
+            title={` Hello ${user && user.data && user.data.name} `}
+          />
 
           <MegaMenuLi>
             <MegaMenuLink to="/app">App</MegaMenuLink>

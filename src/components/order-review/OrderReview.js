@@ -17,7 +17,10 @@ import OrderReviewForm from './OrderReviewForm';
 
 const ReviewContainer = styled.div`
   margin: 1rem;
-  padding: 1rem;
+  padding: 2rem;
+  background: ${props => props.theme.colors.primaryTransparent};
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
 `;
 
 const ReviewSubDiv = styled.div`

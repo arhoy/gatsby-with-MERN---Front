@@ -3,4 +3,5 @@ import alert from './alert';
 import auth from './auth';
 import profile from './profile';
 import review from './review';
-export default combineReducers({ alert, auth, profile, review });
+import bootcamp from './bootcamp';
+export default combineReducers({ alert, auth, profile, review, bootcamp });
