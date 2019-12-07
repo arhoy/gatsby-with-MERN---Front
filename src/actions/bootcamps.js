@@ -1,10 +1,13 @@
 import axios from 'axios';
 import { GET_BOOTCAMPS, BOOTCAMP_ERROR } from './types';
 
-export const getBootcamps = sort => async dispatch => {
+export const getBootcamps = (sort, price) => async dispatch => {
   try {
     const res = await axios.get(
-      `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/bootcamps?select=name,description,averageCost&sort=${sort}`,
+      `${
+        process.env.GATSBY_SERVER_HOST_ROOT
+      }/api/v1/bootcamps?select=name,description,averageCost&sort=${sort}&averageCost[gte]=${price ||
+        0}`,
     );
 
     dispatch({
