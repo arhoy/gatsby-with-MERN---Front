@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
+
 import styled from '@emotion/styled';
 import { connect } from 'react-redux';
 import { Redirect } from '@reach/router';
+import PropTypes from 'prop-types';
+import { FaMarker } from 'react-icons/fa';
 
 import { register } from '../../actions/auth';
-import PropTypes from 'prop-types';
 import { InputStyle1 } from '../reusableStyles/inputs/Input';
 import { ButtonStyle2 } from '../reusableStyles/buttons/Button';
 import { FormStyle1 } from '../reusableStyles/form/Form';
-import { H1 } from '../reusableStyles/typography/Typography';
+import { H3 } from '../reusableStyles/typography/Typography';
 import { Section } from '../reusableStyles/sections/Sections';
 import { UnderLineStyleLink } from '../Links/MoreLinkStyles';
 
 const P = styled.p`
   text-align: center;
+`;
+
+const StyledIcon = styled(FaMarker)`
+  font-size: 5rem;
+  color: ${props => props.theme.colors.white};
+  margin: 2rem;
 `;
 
 const ErrorDiv = styled.div`
@@ -23,6 +31,10 @@ const ErrorDiv = styled.div`
   align-items: center;
 
   text-align: center;
+`;
+
+const Title = styled(H3)`
+  text-transform: uppercase;
 `;
 
 const Register = ({ register, auth: { isAuthenticated, error } }) => {
@@ -47,8 +59,9 @@ const Register = ({ register, auth: { isAuthenticated, error } }) => {
 
   return (
     <Section>
-      <H1> Register Today</H1>
       <FormStyle1 onSubmit={onSubmitHandler}>
+        <StyledIcon />
+        <Title>Register Today</Title>
         <InputStyle1
           onChange={e => handleChange(e)}
           type="text"

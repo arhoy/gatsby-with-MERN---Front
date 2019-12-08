@@ -2,36 +2,34 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { connect } from 'react-redux';
 
-import { setAlert } from '../../actions/alert';
-import { login } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import { Redirect } from '@reach/router';
-import { Section } from '../reusableStyles/sections/Sections';
-import { H1 } from '../reusableStyles/typography/Typography';
+import { FaKey } from 'react-icons/fa';
+import { setAlert } from '../../actions/alert';
+import { login } from '../../actions/auth';
 import { FormStyle1 } from '../reusableStyles/form/Form';
 import { InputStyle1 } from '../reusableStyles/inputs/Input';
 import { ButtonStyle2 } from '../reusableStyles/buttons/Button';
 import { UnderLineStyleLink } from '../Links/MoreLinkStyles';
+import { H3 } from '../reusableStyles/typography/Typography';
+import { Section } from '../reusableStyles/sections/Sections';
 
-const SubDiv = styled.div`
-  text-align: center;
-  padding: 2rem;
-  margin: 1rem;
-  display: flex;
-  justify-content: space-between;
-  & > * {
-    margin: 1rem;
-  }
-  @media (max-width: ${props => props.theme.screenSize.mobileL}) {
-    flex-direction: column;
-    & > * {
-      margin: 4px;
-    }
-  }
+const StyledIcon = styled(FaKey)`
+  font-size: 5rem;
+  color: ${props => props.theme.colors.white};
+  margin: 2rem;
 `;
 
 const ErrorDiv = styled.div`
   text-align: center;
+`;
+
+const P = styled.p`
+  text-align: center;
+`;
+
+const Title = styled(H3)`
+  text-transform: uppercase;
 `;
 
 const Login = ({ login, auth }) => {
@@ -54,8 +52,9 @@ const Login = ({ login, auth }) => {
   if (auth.isAuthenticated) return <Redirect to="/app/dashboard" noThrow />;
   return (
     <Section>
-      <H1> Login</H1>
       <FormStyle1 onSubmit={onSubmitHandler}>
+        <StyledIcon />
+        <Title>Login</Title>
         <InputStyle1
           onChange={e => handleChange(e)}
           type="email"
@@ -77,12 +76,16 @@ const Login = ({ login, auth }) => {
         <ButtonStyle2 type="submit">Login</ButtonStyle2>
         <ErrorDiv>{auth.error && <div> {auth.error} </div>}</ErrorDiv>
 
-        <SubDiv>
-          <UnderLineStyleLink to="/app/register"> Register </UnderLineStyleLink>
-          <UnderLineStyleLink to="/app/forgotpassword">
-            Forgot Password
+        <P>
+          <UnderLineStyleLink to="/app/register">
+            Create a New Account
           </UnderLineStyleLink>
-        </SubDiv>
+        </P>
+        <P>
+          <UnderLineStyleLink to="/app/forgotpassword">
+            Forget Password?
+          </UnderLineStyleLink>
+        </P>
       </FormStyle1>
     </Section>
   );
