@@ -51,7 +51,6 @@ const OrderReviews = ({
 
   return (
     <Div>
-      <div> sorting by {sort} </div>
       <SelectContainer>
         <select value={sort} onChange={e => selectSorHandler(e)}>
           {sortOptions.map(o => (

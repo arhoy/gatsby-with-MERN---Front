@@ -6,7 +6,12 @@ import styled from '@emotion/styled';
 import moment from 'moment';
 
 import renderRating from '../../helpers/renderRating';
-import { FaUserCircle } from 'react-icons/fa';
+import {
+  FaUserCircle,
+  FaThumbsUp,
+  FaTimesCircle,
+  FaEllipsisH,
+} from 'react-icons/fa';
 import {
   addLike,
   removeLike,
@@ -16,7 +21,9 @@ import {
 import OrderReviewForm from './OrderReviewForm';
 
 const ReviewContainer = styled.div`
-  margin: 1rem;
+  position: relative;
+
+  margin: 2rem;
   padding: 2rem;
   background: ${props => props.theme.colors.primaryTransparent};
   border-top-left-radius: 2rem;
@@ -24,12 +31,20 @@ const ReviewContainer = styled.div`
 `;
 
 const ReviewSubDiv = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  background: ${props => props.theme.colors.primary};
+
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   & > * {
     margin: 0.5rem;
   }
 `;
+
 const ReviewRating = styled.div``;
 const ReviewTitle = styled.h3`
   margin: 0;
@@ -50,18 +65,77 @@ const ReviewDate = styled.div`
   font-size: 1.4rem;
 `;
 
-const ReviewButton = styled.button`
-  cursor: pointer;
+const ReviewActionButton = styled.div``;
+
+const ReviewButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  & > * {
+    margin: 0.5rem 0;
+  }
 `;
 
-const ReviewLikes = styled.span`
-  font-weight: bold;
+const ReviewButton = styled.button`
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 2px 4px;
+  background: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.white};
+  &:hover {
+    background: ${props => props.theme.colors.primaryDark};
+  }
+`;
+
+const ReviewLikes = styled.div`
+  position: absolute;
+  bottom: -17px;
+  right: 0;
+
+  display: flex;
 `;
 
 const UserIcon = styled(FaUserCircle)`
   font-size: 5rem;
   color: ${props => props.theme.colors.primary};
   margin-right: 1rem;
+`;
+
+const StyledFaTimesCircle = styled(FaTimesCircle)`
+  align-self: flex-end;
+  color: ${props => props.theme.colors.white};
+`;
+
+const StyledFaEllipsisH = styled(FaEllipsisH)`
+  color: ${props => props.theme.colors.white};
+  display: flex;
+`;
+
+const ThumbsUpContainer = styled.div`
+  border-radius: 50%;
+  margin-right: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: ${props => props.theme.colors.primary};
+`;
+const StyledFaThumbsUp = styled(FaThumbsUp)`
+  font-size: 1.6rem;
+  color: ${props => props.theme.colors.white};
+`;
+
+const LikeCount = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  padding: 3px 6px;
+  color: ${props => props.theme.colors.white};
+  background: ${props => props.theme.colors.primary};
+  border-radius: 3px;
 `;
 
 const Customer = styled.span``;
@@ -75,6 +149,12 @@ const OrderReview = ({
   auth,
 }) => {
   const [showOrderForm, setShowOrderForm] = useState(false);
+
+  const [showActions, setShowActions] = useState(false);
+
+  const showActionsHandler = () => {
+    setShowActions(prev => !prev);
+  };
 
   // find user likes helper function
   const findUserLikes = likes => {
@@ -103,38 +183,50 @@ const OrderReview = ({
   };
 
   return (
-    <>
-      <ReviewContainer key={review.id}>
-        <ReviewHeader>
-          <UserIcon />
-          <div>
-            <ReviewTitle>{review.title}</ReviewTitle>
-            <Customer>{review.user ? review.user.name : 'Anonymous'}</Customer>
-          </div>
-        </ReviewHeader>
-        <ReviewDate>
-          {moment.utc(review.createdAt).format('MMM Do YYYY')}
-        </ReviewDate>
-        <ReviewRating> {renderRating(review.rating)} </ReviewRating>
-        <ReviewText>{review.description}</ReviewText>
-        <ReviewSubDiv>
-          <ReviewButton onClick={deleteReviewHandler.bind(this, review._id)}>
-            Delete Review
-          </ReviewButton>
+    <ReviewContainer key={review.id}>
+      <ReviewHeader>
+        <UserIcon />
+        <div>
+          <ReviewTitle>{review.title}</ReviewTitle>
+          <Customer>{review.user ? review.user.name : 'Anonymous'}</Customer>
+        </div>
+      </ReviewHeader>
+      <ReviewDate>
+        {moment.utc(review.createdAt).format('MMM Do YYYY')}
+      </ReviewDate>
+      <ReviewRating> {renderRating(review.rating)} </ReviewRating>
+      <ReviewText>{review.description}</ReviewText>
+      <ReviewSubDiv>
+        <ReviewActionButton>
+          {showActions ? (
+            <ReviewButtonContainer>
+              <StyledFaTimesCircle onClick={showActionsHandler} />
+              <ReviewButton
+                onClick={deleteReviewHandler.bind(this, review._id)}
+              >
+                Delete Review
+              </ReviewButton>
 
-          <ReviewButton onClick={showEditForm}>Edit Form</ReviewButton>
+              <ReviewButton onClick={showEditForm}>Edit Form</ReviewButton>
+            </ReviewButtonContainer>
+          ) : (
+            <StyledFaEllipsisH onClick={showActionsHandler} />
+          )}
+        </ReviewActionButton>
+      </ReviewSubDiv>
 
-          <ReviewButton onClick={toggleLikeHandler.bind(this, review._id)}>
-            Add Like Button
-          </ReviewButton>
-          <ReviewLikes>
-            Likes {` `} {review.likes.length}
-          </ReviewLikes>
-        </ReviewSubDiv>
-
-        {showOrderForm ? <OrderReviewForm edit={true} review={review} /> : null}
-      </ReviewContainer>
-    </>
+      <ReviewLikes>
+        <ThumbsUpContainer onClick={toggleLikeHandler.bind(this, review._id)}>
+          <StyledFaThumbsUp />
+        </ThumbsUpContainer>
+        <LikeCount>
+          {review.likes.length === 1
+            ? ` ${review.likes.length} like`
+            : ` ${review.likes.length} likes`}
+        </LikeCount>
+      </ReviewLikes>
+      {showOrderForm ? <OrderReviewForm edit={true} review={review} /> : null}
+    </ReviewContainer>
   );
 };
 
