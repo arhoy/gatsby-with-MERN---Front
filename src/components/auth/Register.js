@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import styled from '@emotion/styled';
 import { connect } from 'react-redux';
-import { navigate } from 'gatsby';
+import { Redirect } from '@reach/router';
 
-import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import { InputStyle1 } from '../reusableStyles/inputs/Input';
@@ -10,31 +10,40 @@ import { ButtonStyle2 } from '../reusableStyles/buttons/Button';
 import { FormStyle1 } from '../reusableStyles/form/Form';
 import { H1 } from '../reusableStyles/typography/Typography';
 import { Section } from '../reusableStyles/sections/Sections';
+import { UnderLineStyleLink } from '../Links/MoreLinkStyles';
 
-const Register = ({ setAlert, register, isAuthenticated }) => {
+const P = styled.p`
+  text-align: center;
+`;
+
+const ErrorDiv = styled.div`
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+`;
+
+const Register = ({ register, auth: { isAuthenticated, error } }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    password2: '',
   });
 
-  const { name, email, password, password2 } = formData;
+  const { name, email, password } = formData;
 
   const handleChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmitHandler = async e => {
     e.preventDefault();
-    if (password !== password2) {
-      setAlert('Password not matching!', 'danger');
-    } else {
-      register({ name, email, password });
-    }
+    register({ name, email, password });
   };
 
   // redirect if authenticated.
-  if (isAuthenticated) return navigate('/app');
+  if (isAuthenticated) return <Redirect to="/app/dashboard" noThrow />;
 
   return (
     <Section>
@@ -65,33 +74,38 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           minLength={6}
           required
         />
-        <InputStyle1
-          onChange={e => handleChange(e)}
-          type="password"
-          placeholder="Confirm Password"
-          value={password2}
-          name="password2"
-          minLength={6}
-          required
-        />
+
         <ButtonStyle2 type="submit" className="btn btn-transparent">
           Register
         </ButtonStyle2>
+
+        {error && error.includes('Duplicate') && (
+          <ErrorDiv> User with this email already exists!</ErrorDiv>
+        )}
+        {error && !error.includes('Duplicate') && (
+          <ErrorDiv>
+            {error} Please contact {process.env.EMAIL} for assistance
+          </ErrorDiv>
+        )}
+
+        <P>
+          Already a user?
+          <UnderLineStyleLink to="/app/login"> Login </UnderLineStyleLink>
+        </P>
       </FormStyle1>
     </Section>
   );
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
 });
 
 export default connect(
   mapStateToProps,
-  { setAlert, register },
+  { register },
 )(Register);

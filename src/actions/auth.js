@@ -67,6 +67,7 @@ export const register = ({ name, email, password }) => async dispatch => {
     }
     dispatch({
       type: REGISTER_FAIL,
+      payload: error.response.data.error || 'Unknown Error',
     });
   }
 };
@@ -96,12 +97,9 @@ export const login = (email, password) => async dispatch => {
     // dispatch user
     dispatch(loadUser());
   } catch (error) {
-    const errors = error.response.data.errors;
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-    }
     dispatch({
       type: LOGIN_FAIL,
+      payload: error.response.data.error || 'Unknown Error',
     });
   }
 };
