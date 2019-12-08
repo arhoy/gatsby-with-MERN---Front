@@ -9,7 +9,7 @@ import { H3 } from '../reusableStyles/typography/Typography';
 import { Section } from '../reusableStyles/sections/Sections';
 import { FaLock } from 'react-icons/fa';
 import NoStyleLink from '../Links/NoStyleLink';
-import { forgotPassword } from '../../actions/auth';
+import { resetPassword } from '../../actions/auth';
 import {
   SimpleAlertGreen,
   SimpleAlertRed,
@@ -36,8 +36,9 @@ const NoStyleLinkCustom = styled(NoStyleLink)`
   }
 `;
 
-const ForgotPassword = ({ forgotPassword }) => {
-  const [email, setEmail] = useState('');
+const ResetPassword = ({ resetPassword }) => {
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [message, setMessage] = useState('');
   const [success, setSuccess] = useState(false);
 
@@ -50,7 +51,7 @@ const ForgotPassword = ({ forgotPassword }) => {
   const onSubmitHandler = async e => {
     e.preventDefault();
 
-    const result = await forgotPassword(email);
+    const result = await resetPassword(email);
     if (result.success) {
       setSuccess(true);
       setMessage(result.data);
@@ -72,10 +73,18 @@ const ForgotPassword = ({ forgotPassword }) => {
           </P>
           <InputStyle1
             onChange={e => handleChange(e)}
-            type="email"
-            placeholder="Your Email"
-            value={email}
-            name="email"
+            type="password"
+            placeholder="New Password"
+            value={password}
+            name="password"
+            required
+          />
+          <InputStyle1
+            onChange={e => handleChange(e)}
+            type="password"
+            placeholder="New Password (again)"
+            value={passwordConfirm}
+            name="passwordConfirm"
             required
           />
 
@@ -86,17 +95,8 @@ const ForgotPassword = ({ forgotPassword }) => {
           ) : (
             <SimpleAlertRed>{message}</SimpleAlertRed>
           )}
-          <P>OR</P>
-          <P>
-            <NoStyleLinkCustom to="/app/register">
-              Create a New Account
-            </NoStyleLinkCustom>
-          </P>
-          <P>
-            <NoStyleLinkCustom to="/app/login">
-              Return to Login
-            </NoStyleLinkCustom>
-          </P>
+
+          <P>Still having trouble with logging in? Contact support</P>
         </FormStyle1>
       </Div>
     </Section>
@@ -105,5 +105,5 @@ const ForgotPassword = ({ forgotPassword }) => {
 
 export default connect(
   null,
-  { forgotPassword },
-)(ForgotPassword);
+  { resetPassword },
+)(ResetPassword);

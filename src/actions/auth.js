@@ -110,3 +110,25 @@ export const logout = () => dispatch => {
     type: LOGOUT,
   });
 };
+
+// Forgot Password
+export const forgotPassword = email => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ email });
+
+  try {
+    const res = await axios.post(
+      `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/auth/forgotPassword`,
+      body,
+      config,
+    );
+    return res.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
