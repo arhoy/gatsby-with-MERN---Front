@@ -56,7 +56,7 @@ const ResetPassword = ({ resetpassword, location }) => {
     if (password === passwordConfirm) {
       // pass in password and token from email
       const result = await resetpassword(password, token);
-      console.log('The result is', result);
+
       if (result.success) {
         setSuccess(true);
         setMessage('Password Reset Success, Please Login below');
