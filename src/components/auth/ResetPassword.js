@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import { FaLock } from 'react-icons/fa';
 import { connect } from 'react-redux';
+
+import { resetpassword } from '../../actions/auth';
 
 import { InputStyle1 } from '../reusableStyles/inputs/Input';
 import { FormStyle1 } from '../reusableStyles/form/Form';
 import { ButtonStyle2 } from '../reusableStyles/buttons/Button';
 import { H3 } from '../reusableStyles/typography/Typography';
 import { Section } from '../reusableStyles/sections/Sections';
-import { FaLock } from 'react-icons/fa';
-import NoStyleLink from '../Links/NoStyleLink';
-import { resetPassword } from '../../actions/auth';
+
 import {
   SimpleAlertGreen,
   SimpleAlertRed,
 } from '../reusableStyles/alerts/SimpleAlerts';
+import { UnderLineStyleLink } from '../Links/MoreLinkStyles';
 
 const Div = styled.div`
   text-align: center;
@@ -29,35 +31,42 @@ const P = styled.p`
   padding: 1rem;
 `;
 
-const NoStyleLinkCustom = styled(NoStyleLink)`
-  font-weight: bold;
-  & :hover {
-    text-decoration: underline;
-  }
-`;
+const ResetPassword = ({ resetpassword, location }) => {
+  const token = location.search.substring(1);
 
-const ResetPassword = ({ resetPassword }) => {
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [formData, setFormData] = useState({
+    password: '',
+    passwordConfirm: '',
+  });
+
+  const { password, passwordConfirm } = formData;
 
   const handleChange = e => {
-    setEmail(e.target.value);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
     setSuccess(false);
     setMessage('');
   };
 
   const onSubmitHandler = async e => {
     e.preventDefault();
-
-    const result = await resetPassword(email);
-    if (result.success) {
-      setSuccess(true);
-      setMessage(result.data);
+    setFormData({ ...formData, password: '', passwordConfirm: '' });
+    if (password === passwordConfirm) {
+      // pass in password and token from email
+      const result = await resetpassword(password, token);
+      console.log('The result is', result);
+      if (result.success) {
+        setSuccess(true);
+        setMessage('Password Reset Success, Please Login below');
+      } else {
+        setSuccess(false);
+        setMessage(result.error);
+      }
     } else {
-      setMessage(result.error);
       setSuccess(false);
+      setMessage('Passwords must match!');
     }
   };
 
@@ -66,11 +75,10 @@ const ResetPassword = ({ resetPassword }) => {
       <Div>
         <FormStyle1 onSubmit={onSubmitHandler}>
           <StyledFaLock />
-          <H3>Trouble Logging In?</H3>
-          <P>
-            Enter your email and we'll send you a link to get back into your
-            account.
-          </P>
+          <H3>Enter your new secure password</H3>
+          <div>{message}</div>
+          <div>{success}</div>
+
           <InputStyle1
             onChange={e => handleChange(e)}
             type="password"
@@ -91,12 +99,18 @@ const ResetPassword = ({ resetPassword }) => {
           <ButtonStyle2 type="submit">Submit</ButtonStyle2>
 
           {!message ? null : success ? (
-            <SimpleAlertGreen>{message}</SimpleAlertGreen>
+            <SimpleAlertGreen>
+              <div>{message}</div>
+
+              <UnderLineStyleLink to="/app/login">
+                Please Login Here
+              </UnderLineStyleLink>
+            </SimpleAlertGreen>
           ) : (
             <SimpleAlertRed>{message}</SimpleAlertRed>
           )}
 
-          <P>Still having trouble with logging in? Contact support</P>
+          <div>Still having trouble with logging in? Contact support</div>
         </FormStyle1>
       </Div>
     </Section>
@@ -105,5 +119,5 @@ const ResetPassword = ({ resetPassword }) => {
 
 export default connect(
   null,
-  { resetPassword },
+  { resetpassword },
 )(ResetPassword);

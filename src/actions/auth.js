@@ -132,3 +132,26 @@ export const forgotPassword = email => async dispatch => {
     return error.response.data;
   }
 };
+
+// Reset Password
+export const resetpassword = (password, token) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ password, token });
+
+  try {
+    const res = await axios.post(
+      `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/auth/resetpassword`,
+      body,
+      config,
+    );
+
+    return res.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};

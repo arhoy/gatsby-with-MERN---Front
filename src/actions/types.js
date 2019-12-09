@@ -18,10 +18,6 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
 
-// forgot password
-export const PASSWORD_SENT = 'PASSWORD_SENT';
-export const PASSWORD_SENT_ERROR = 'PASSWORD_SENT_ERROR';
-
 // profiles
 export const GET_PROFILE = 'GET_PROFILE';
 export const GET_PROFILES = 'GET_PROFILES';

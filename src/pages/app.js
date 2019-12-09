@@ -15,6 +15,7 @@ import PopupAlerts from '../components/reusableStyles/alerts/PopupAlerts';
 import AppLanding from '../components/dashboard/AppLanding';
 import PrivateRoute from '../components/routing/PrivateRoute';
 import ForgotPassword from '../components/auth/ForgotPassword';
+import ResetPassword from '../components/auth/ResetPassword';
 
 const app = () => {
   return (
@@ -26,6 +27,7 @@ const app = () => {
         <Register exact path="/app/register" />
         <Login exact path="/app/login" />
         <ForgotPassword exact path="/app/forgotpassword" />
+        <ResetPassword exact path="/app/resetpassword" />
       </Router>
       <PopupAlerts />
     </Layout5>
