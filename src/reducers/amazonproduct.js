@@ -1,4 +1,8 @@
-import { GET_AMAZON_PRODUCTS, AMAZON_PRODUCTS_ERROR } from '../actions/types';
+import {
+  GET_AMAZON_PRODUCTS,
+  GET_AMAZON_PRODUCT,
+  AMAZON_PRODUCTS_ERROR,
+} from '../actions/types';
 
 const initialState = {
   amazonproduct: null,
@@ -15,7 +19,13 @@ export default function(state = initialState, action) {
         ...state,
         amazonproducts: payload.data,
         loading: false,
-        error: {},
+      };
+
+    case GET_AMAZON_PRODUCT:
+      return {
+        ...state,
+        amazonproduct: payload.data,
+        loading: false,
       };
     case AMAZON_PRODUCTS_ERROR:
       return {

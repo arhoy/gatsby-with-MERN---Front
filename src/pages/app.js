@@ -1,3 +1,5 @@
+// app is client side rendered
+
 import React from 'react';
 import { Router } from '@reach/router';
 import Register from '../components/auth/Register';
@@ -16,6 +18,7 @@ import AppLanding from '../components/dashboard/AppLanding';
 import PrivateRoute from '../components/routing/PrivateRoute';
 import ForgotPassword from '../components/auth/ForgotPassword';
 import ResetPassword from '../components/auth/ResetPassword';
+import AmazonProduct from '../components/amazonproduct/AmazonProduct';
 
 const app = () => {
   return (
@@ -28,6 +31,7 @@ const app = () => {
         <Login exact path="/app/login" />
         <ForgotPassword exact path="/app/forgotpassword" />
         <ResetPassword exact path="/app/resetpassword" />
+        <AmazonProduct exact path="/app/amazonproducts/:slug" />
       </Router>
       <PopupAlerts />
     </Layout5>

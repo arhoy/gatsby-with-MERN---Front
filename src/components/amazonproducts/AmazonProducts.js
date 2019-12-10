@@ -78,7 +78,8 @@ const AmazonProducts = ({
         </InputRangeContainer>
       </SelectContainer>
       <Container>
-        {amazonproducts.length > 0 &&
+        {amazonproducts &&
+          amazonproducts.length > 0 &&
           amazonproducts.map(amazonproduct => (
             <AmazonProduct
               key={amazonproduct._id}

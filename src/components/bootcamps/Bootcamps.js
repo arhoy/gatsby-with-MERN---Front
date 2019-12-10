@@ -72,7 +72,8 @@ const Bootcamps = ({ getBootcamps, bootcamp: { bootcamps, loading } }) => {
         </InputRangeContainer>
       </SelectContainer>
 
-      {bootcamps.length > 0 &&
+      {bootcamps &&
+        bootcamps.length > 0 &&
         bootcamps.map(bootcamp => (
           <Bootcamp key={bootcamp._id} bootcamp={bootcamp} />
         ))}
