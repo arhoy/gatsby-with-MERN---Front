@@ -27,10 +27,6 @@ const StyledFaLock = styled(FaLock)`
   margin: 2rem;
 `;
 
-const P = styled.p`
-  padding: 1rem;
-`;
-
 const ResetPassword = ({ resetpassword, location }) => {
   const token = location.search.substring(1);
 

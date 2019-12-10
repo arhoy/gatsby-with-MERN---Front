@@ -27,6 +27,7 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import NoStyleLink from '../../components/Links/NoStyleLink';
 import getAllProductsHook from '../../hooks/contentful/products/allProducts/getAllProductsHook';
 import Bootcamps from '../../components/bootcamps/Bootcamps';
+import AmazonProducts from '../../components/amazonproducts/AmazonProducts';
 
 const P = styled.p`
   margin: 1.5rem 0rem;
@@ -471,6 +472,10 @@ export default ({ data }) => {
             />
           </AliceGallery>
         </Container800>
+      </Section>
+
+      <Section>
+        <AmazonProducts />
       </Section>
 
       <Section>

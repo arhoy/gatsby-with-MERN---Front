@@ -69,7 +69,10 @@ exports.createPages = async ({ actions, graphql }) => {
       },
     });
   });
-  // mapbox to work
+
+  // create page for each amazon product and list them in /amazonproducts
+
+  // mapbox to work (needed? check?)
   exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     if (stage === 'build-html') {
       actions.setWebpackConfig({

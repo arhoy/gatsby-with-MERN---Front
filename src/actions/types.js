@@ -38,3 +38,7 @@ export const UPDATE_LIKES = 'UPDATE_LIKES';
 // bootcamps
 export const GET_BOOTCAMPS = 'GET_BOOTCAMPS';
 export const BOOTCAMP_ERROR = 'BOOTCAMP_ERROR';
+
+// amazon products GENERAL
+export const GET_AMAZON_PRODUCTS = 'GET_AMAZON_PRODUCTS';
+export const AMAZON_PRODUCTS_ERROR = 'AMAZON_PRODUCTS_ERROR';

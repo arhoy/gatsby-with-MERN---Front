@@ -1,8 +1,8 @@
-import { GET_BOOTCAMPS, BOOTCAMP_ERROR } from '../actions/types';
+import { GET_AMAZON_PRODUCTS, AMAZON_PRODUCTS_ERROR } from '../actions/types';
 
 const initialState = {
-  bootcamp: null,
-  bootcamps: [],
+  amazonproduct: null,
+  amazonproducts: [],
   loading: true,
   error: {},
 };
@@ -10,21 +10,18 @@ const initialState = {
 export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case GET_BOOTCAMPS:
+    case GET_AMAZON_PRODUCTS:
       return {
         ...state,
-        bootcamps: payload.data,
+        amazonproducts: payload.data,
         loading: false,
         error: {},
       };
-
-    case BOOTCAMP_ERROR:
+    case AMAZON_PRODUCTS_ERROR:
       return {
         ...state,
         error: payload.error,
-        loading: false,
       };
-
     default:
       return state;
   }

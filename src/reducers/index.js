@@ -4,4 +4,12 @@ import auth from './auth';
 import profile from './profile';
 import review from './review';
 import bootcamp from './bootcamp';
-export default combineReducers({ alert, auth, profile, review, bootcamp });
+import amazonproduct from './amazonproduct';
+export default combineReducers({
+  alert,
+  auth,
+  profile,
+  review,
+  bootcamp,
+  amazonproduct,
+});
