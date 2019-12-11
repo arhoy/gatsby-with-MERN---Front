@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from '@emotion/styled';
+
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -7,19 +7,13 @@ import { getAmazonProducts } from '../../actions/amazonproducts';
 import AmazonProduct from './AmazonProduct';
 import { H2 } from '../reusableStyles/typography/Typography';
 import 'react-input-range/lib/css/index.css';
-import { Container } from './AmazonProductStyles';
 
-const Div = styled.div`
-  & select {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin: 1rem 0;
-  }
-`;
-
-const SelectContainer = styled.div``;
-
-const InputRangeContainer = styled.div``;
+import { ProductLayout1 } from '../products/ProductContainerStyles/ProductContainerStyle';
+import {
+  InputRangeContainer,
+  ActionContainer,
+  SelectContainer,
+} from './AmazonProductsStyling';
 
 const AmazonProducts = ({
   getAmazonProducts,
@@ -56,28 +50,31 @@ const AmazonProducts = ({
 
   if (loading) return <div>Loading...</div>;
   return (
-    <Div>
-      <H2>Tech AmazonProducts</H2>
-      <SelectContainer>
-        <select value={selectedOption} onChange={e => selectOptionHandler(e)}>
-          {options.map(o => (
-            <option key={o.label} value={o.value}>
-              {o.label}
-            </option>
-          ))}
-        </select>
-        <InputRangeContainer>
-          <h4> Starting Price ${price} </h4>
-          <input
-            onChange={e => setPriceHandler(e)}
-            type="range"
-            min="0"
-            max="1000"
-            value={price}
-          />
-        </InputRangeContainer>
-      </SelectContainer>
-      <Container>
+    <>
+      <ActionContainer>
+        <H2>Amazon Products</H2>
+        <SelectContainer>
+          <select value={selectedOption} onChange={e => selectOptionHandler(e)}>
+            {options.map(o => (
+              <option key={o.label} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+          <InputRangeContainer>
+            <h4> Starting Price ${price} </h4>
+            <input
+              onChange={e => setPriceHandler(e)}
+              type="range"
+              min="0"
+              max="1000"
+              value={price}
+            />
+          </InputRangeContainer>
+        </SelectContainer>
+      </ActionContainer>
+
+      <ProductLayout1>
         {amazonproducts &&
           amazonproducts.length > 0 &&
           amazonproducts.map(amazonproduct => (
@@ -86,8 +83,8 @@ const AmazonProducts = ({
               amazonproduct={amazonproduct}
             />
           ))}
-      </Container>
-    </Div>
+      </ProductLayout1>
+    </>
   );
 };
 

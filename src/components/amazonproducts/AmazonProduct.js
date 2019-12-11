@@ -1,25 +1,67 @@
 import React from 'react';
 
 import {
-  Div,
+  StyledLinkContainer,
   ImageContainer,
-  ButtonStyleAmazon,
-  PriceStyle,
-} from './AmazonProductStyles';
-import NoStyleLink from '../Links/NoStyleLink';
+  DiscountBadge,
+  DisplayBadgeContainer,
+  StyledImage2,
+  StyledOldPrice,
+  StyledPrice,
+  StyledDiscountPrice,
+  PriceContainer,
+  RatingContainer,
+} from './AmazonProductsStyling';
+
+import renderRating from '../../helpers/renderRating';
+import calculatePercentage from '../../helpers/calculatePercentages';
 
 const AmazonProduct = ({ amazonproduct }) => {
+  if (!amazonproduct) {
+    return <div> No products found in this category</div>;
+  }
   return (
-    <NoStyleLink to={`/app/amazonproducts/${amazonproduct.slug}`}>
-      <Div>
-        <h3> {amazonproduct.name}</h3>
-        <PriceStyle> {amazonproduct.price}</PriceStyle>
-        <p> {amazonproduct.ratting}</p>
-        <ImageContainer src={amazonproduct.image} />
-        <ButtonStyleAmazon>Learn More</ButtonStyleAmazon>
-        <pre>{JSON.stringify(amazonproduct, null, 2)}</pre>
-      </Div>
-    </NoStyleLink>
+    <StyledLinkContainer to={`/app/amazonproducts/${amazonproduct.slug}`}>
+      <DiscountBadge>
+        {amazonproduct.discountPrice
+          ? `Save ${calculatePercentage(
+              amazonproduct.discountPrice,
+              amazonproduct.priceValue,
+              0,
+            )}% `
+          : 'NEW ITEM'}
+      </DiscountBadge>
+
+      <ImageContainer>
+        <StyledImage2 src={amazonproduct.image} alt={amazonproduct.name} />
+
+        <h4>
+          {amazonproduct.name.length <= 65
+            ? amazonproduct.name
+            : `${amazonproduct.name.substring(0, 65)}...`}
+        </h4>
+        <DisplayBadgeContainer>
+          {amazonproduct.displayBadge &&
+            amazonproduct.displayBadge.map(badge => (
+              <span key={badge}>{badge}</span>
+            ))}
+        </DisplayBadgeContainer>
+      </ImageContainer>
+
+      <RatingContainer>{renderRating(amazonproduct.rating)}</RatingContainer>
+      {amazonproduct.discountPrice ? (
+        <PriceContainer>
+          <StyledOldPrice>${amazonproduct.priceValue}</StyledOldPrice>
+          <StyledDiscountPrice>
+            ${amazonproduct.discountPrice}
+          </StyledDiscountPrice>
+        </PriceContainer>
+      ) : (
+        <PriceContainer>
+          <StyledPrice>${amazonproduct.priceValue}</StyledPrice>
+        </PriceContainer>
+      )}
+    </StyledLinkContainer>
   );
 };
 export default AmazonProduct;
