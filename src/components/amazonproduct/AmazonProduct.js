@@ -20,7 +20,9 @@ const AmazonProduct = ({
     const slug = location.pathname.split('/')[index];
     getAmazonProduct(slug);
   }, [getAmazonProduct]);
-
+  if (loading) {
+    return <div>Loading Products</div>;
+  }
   return (
     <Div>
       <h3> {amazonproduct.name}</h3>
