@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Image from 'gatsby-image';
 import { Link } from 'gatsby';
 
 // actions on each product render
