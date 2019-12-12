@@ -5,16 +5,22 @@ import {
   AMAZON_PRODUCTS_ERROR,
 } from './types';
 
-export const getAmazonProducts = (sort, price) => async dispatch => {
+// make reusable based on url department that is passed in (amazonproducts, amazon-tools, amazon-home-decore etc)
+export const getAmazonProducts = (
+  department,
+  sort,
+  price,
+) => async dispatch => {
   try {
     const res = await axios.get(
       `${
         process.env.GATSBY_SERVER_HOST_ROOT
-      }/api/v1/amazonproducts?sort=${sort}&priceValue[gte]=${price || 0}`,
+      }/api/v1/${department}?sort=${sort}&priceValue[gte]=${price || 0}`,
     );
 
+    // switch statement to determine which department of products to render
     dispatch({
-      type: GET_AMAZON_PRODUCTS,
+      type: `${GET_AMAZON_PRODUCTS}_${department}`,
       payload: res.data,
     });
   } catch (error) {
@@ -25,10 +31,10 @@ export const getAmazonProducts = (sort, price) => async dispatch => {
   }
 };
 
-export const getAmazonProduct = slug => async dispatch => {
+export const getAmazonProduct = (department, slug) => async dispatch => {
   try {
     const res = await axios.get(
-      `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/amazonproducts/${slug}`,
+      `${process.env.GATSBY_SERVER_HOST_ROOT}/api/v1/${department}/${slug}`,
     );
     dispatch({
       type: GET_AMAZON_PRODUCT,

@@ -2,7 +2,6 @@ import axios from 'axios';
 import { GET_BOOTCAMPS, BOOTCAMP_ERROR } from './types';
 
 export const getBootcamps = (sort, price) => async dispatch => {
-  console.log('get bootcamps action', process.env.GATSBY_SERVER_HOST_ROOT);
   try {
     const res = await axios.get(
       `${

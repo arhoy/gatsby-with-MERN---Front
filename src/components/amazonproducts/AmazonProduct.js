@@ -16,12 +16,12 @@ import {
 import renderRating from '../../helpers/renderRating';
 import calculatePercentage from '../../helpers/calculatePercentages';
 
-const AmazonProduct = ({ amazonproduct }) => {
+const AmazonProduct = ({ amazonproduct, department }) => {
   if (!amazonproduct) {
     return <div> No products found in this category</div>;
   }
   return (
-    <StyledLinkContainer to={`/app/amazonproducts/${amazonproduct.slug}`}>
+    <StyledLinkContainer to={`/app/${department}/${amazonproduct.slug}`}>
       <DiscountBadge>
         {amazonproduct.discountPrice
           ? `Save ${calculatePercentage(

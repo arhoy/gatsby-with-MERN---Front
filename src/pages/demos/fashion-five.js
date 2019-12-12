@@ -27,7 +27,7 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import NoStyleLink from '../../components/Links/NoStyleLink';
 import getAllProductsHook from '../../hooks/contentful/products/allProducts/getAllProductsHook';
 import Bootcamps from '../../components/bootcamps/Bootcamps';
-import AmazonProducts from '../../components/amazonproducts/AmazonProducts';
+import { AmazonProductsHOC } from '../../components/amazonproducts/AmazonProductHOC';
 
 const P = styled.p`
   margin: 1.5rem 0rem;
@@ -475,7 +475,31 @@ export default ({ data }) => {
       </Section>
 
       <Section>
-        <AmazonProducts />
+        <AmazonProductsHOC department={'amazonproducts'} />
+      </Section>
+
+      <SectionGrey>
+        <AmazonProductsHOC department={'amazon-tools'} title="Tools" />
+      </SectionGrey>
+
+      <Section>
+        <AmazonProductsHOC
+          department={'amazon-electronics'}
+          title="Electronics"
+        />
+      </Section>
+      <SectionGrey>
+        <AmazonProductsHOC
+          department={'amazon-automotive'}
+          title="Automotive"
+        />
+      </SectionGrey>
+
+      <Section>
+        <AmazonProductsHOC
+          department={'amazon-home-and-decore'}
+          title="Home & Decore"
+        />
       </Section>
 
       <Section>

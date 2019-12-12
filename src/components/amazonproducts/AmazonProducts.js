@@ -17,10 +17,19 @@ import {
 
 const AmazonProducts = ({
   getAmazonProducts,
-  amazonproduct: { amazonproducts, loading },
+  amazonproduct: {
+    amazonproducts,
+    amazontools,
+    amazonelectronics,
+    amazonautomotive,
+    amazonhomeanddecore,
+    loading,
+  },
+  department,
+  title,
 }) => {
   useEffect(() => {
-    getAmazonProducts();
+    getAmazonProducts(department);
   }, [getAmazonProducts]);
 
   // select dropdown options
@@ -40,19 +49,20 @@ const AmazonProducts = ({
     setSelectedOption(e.target.value);
     // pass sort option into getAmazonProducts
 
-    getAmazonProducts(e.target.value, price);
+    getAmazonProducts(department, e.target.value, price);
   };
 
   const setPriceHandler = e => {
     setPrice(e.target.value);
-    getAmazonProducts(selectedOption, e.target.value);
+    getAmazonProducts(department, selectedOption, e.target.value);
   };
 
   if (loading) return <div>Loading...</div>;
+  console.log('department is ', department);
   return (
     <>
       <ActionContainer>
-        <H2>Amazon Products</H2>
+        <H2>Amazon {title || 'Products'}</H2>
         <SelectContainer>
           <select value={selectedOption} onChange={e => selectOptionHandler(e)}>
             {options.map(o => (
@@ -74,16 +84,72 @@ const AmazonProducts = ({
         </SelectContainer>
       </ActionContainer>
 
-      <ProductLayout1>
-        {amazonproducts &&
-          amazonproducts.length > 0 &&
-          amazonproducts.map(amazonproduct => (
-            <AmazonProduct
-              key={amazonproduct._id}
-              amazonproduct={amazonproduct}
-            />
-          ))}
-      </ProductLayout1>
+      {department === 'amazonproducts' && (
+        <ProductLayout1>
+          {amazonproducts &&
+            amazonproducts.length > 0 &&
+            amazonproducts.map(amazonproduct => (
+              <AmazonProduct
+                key={amazonproduct._id}
+                amazonproduct={amazonproduct}
+                department={department}
+              />
+            ))}
+        </ProductLayout1>
+      )}
+
+      {department === 'amazon-tools' && (
+        <ProductLayout1>
+          {amazontools &&
+            amazontools.length > 0 &&
+            amazontools.map(amazonproduct => (
+              <AmazonProduct
+                key={amazonproduct._id}
+                amazonproduct={amazonproduct}
+                department={department}
+              />
+            ))}
+        </ProductLayout1>
+      )}
+      {department === 'amazon-electronics' && (
+        <ProductLayout1>
+          {amazonelectronics &&
+            amazonelectronics.length > 0 &&
+            amazonelectronics.map(amazonproduct => (
+              <AmazonProduct
+                key={amazonproduct._id}
+                amazonproduct={amazonproduct}
+                department={department}
+              />
+            ))}
+        </ProductLayout1>
+      )}
+      {department === 'amazon-automotive' && (
+        <ProductLayout1>
+          {amazonautomotive &&
+            amazonautomotive.length > 0 &&
+            amazonautomotive.map(amazonproduct => (
+              <AmazonProduct
+                key={amazonproduct._id}
+                amazonproduct={amazonproduct}
+                department={department}
+              />
+            ))}
+        </ProductLayout1>
+      )}
+      {department === 'amazon-home-and-decore' && (
+        <ProductLayout1>
+          {amazonhomeanddecore &&
+            amazonhomeanddecore.length > 0 &&
+            amazonhomeanddecore.map(amazonproduct => (
+              <AmazonProduct
+                key={amazonproduct._id}
+                amazonproduct={amazonproduct}
+                department={department}
+              />
+            ))}
+        </ProductLayout1>
+      )}
     </>
   );
 };

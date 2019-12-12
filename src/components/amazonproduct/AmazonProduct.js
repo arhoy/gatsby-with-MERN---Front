@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import styled from '@emotion/styled';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -34,27 +35,40 @@ import calculatePercentage from '../../helpers/calculatePercentages';
 import ProductBranding from '../products/ProductBranding';
 import OrderReviewContainer from '../order-review/OrderReviewContainer';
 
+const CustomProductContainer = styled(ProductContainer)`
+  grid-template-columns: 1fr 1fr;
+`;
+
+const CustomProductImageContainer = styled(ProductImageContainer)`
+  @media (min-width: ${props => props.theme.screenSize.nineHundred}) {
+    max-width: 55rem;
+  }
+`;
+
 const AmazonProduct = ({
   getAmazonProduct,
   amazonproduct: { amazonproduct, loading },
+  department,
+  title,
   location,
 }) => {
   useEffect(() => {
     const index = location.pathname.split('/').length - 1;
     const slug = location.pathname.split('/')[index];
-    getAmazonProduct(slug);
+
+    getAmazonProduct(department, slug);
   }, [getAmazonProduct]);
 
   if (loading || !amazonproduct) {
-    return <div>Loading Products</div>;
+    return <div>Loading {title}</div>;
   }
   return (
     <>
       <Section style={{ paddingTop: '4rem' }}>
         <Container1200>
-          <ProductContainer>
+          <CustomProductContainer>
             <ProductContainerLHS>
-              <ProductImageContainer>
+              <CustomProductImageContainer>
                 <ProductTitle>{amazonproduct.name}</ProductTitle>
                 <TagContainer style={{ textAlign: 'center' }}>
                   {amazonproduct.tags &&
@@ -112,11 +126,11 @@ const AmazonProduct = ({
                       ? amazonproduct.discountPrice
                       : amazonproduct.priceValue
                   }
-                  data-item-url={`/app/amazonproducts/${amazonproduct.slug}`}
+                  data-item-url={`/app/${department}/${amazonproduct.slug}`}
                 >
                   Add to Cart
                 </SnipCartButton1>
-              </ProductImageContainer>
+              </CustomProductImageContainer>
             </ProductContainerLHS>
 
             <ProductContentContainer>
@@ -131,7 +145,7 @@ const AmazonProduct = ({
                 ]}
               />
             </ProductContentContainer>
-          </ProductContainer>
+          </CustomProductContainer>
         </Container1200>
       </Section>
 

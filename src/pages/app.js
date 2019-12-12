@@ -31,7 +31,31 @@ const app = () => {
         <Login exact path="/app/login" />
         <ForgotPassword exact path="/app/forgotpassword" />
         <ResetPassword exact path="/app/resetpassword" />
-        <AmazonProduct exact path="/app/amazonproducts/:slug" />
+        <AmazonProduct
+          department="amazonproducts"
+          exact
+          path="/app/amazonproducts/:slug"
+        />
+        <AmazonProduct
+          department="amazon-tools"
+          exact
+          path="/app/amazon-tools/:slug"
+        />
+        <AmazonProduct
+          department="amazon-electronics"
+          exact
+          path="/app/amazon-electronics/:slug"
+        />
+        <AmazonProduct
+          department="amazon-automotive"
+          exact
+          path="/app/amazon-automotive/:slug"
+        />
+        <AmazonProduct
+          department="amazon-home-and-decore"
+          exact
+          path="/app/amazon-home-and-decore/:slug"
+        />
       </Router>
       <PopupAlerts />
     </Layout5>
