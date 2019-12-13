@@ -60,6 +60,11 @@ const List5 = ({ auth: { isAuthenticated, user }, logout }) => {
         <MegaMenuLi>
           <MegaMenuLink to="/demos/fashion-five">Fashion Five</MegaMenuLink>
         </MegaMenuLi>
+        <MegaMenuLi>
+          <MegaMenuLink to="/demos/fashion-five-amazon">
+            Amazon Fashion Five
+          </MegaMenuLink>
+        </MegaMenuLi>
       </MegaMenuUl>
 
       {isAuthenticated && user ? (
