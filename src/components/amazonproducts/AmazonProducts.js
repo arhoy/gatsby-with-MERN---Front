@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { getAmazonProducts } from '../../actions/amazonproducts';
 import AmazonProduct from './AmazonProduct';
 import { H2 } from '../reusableStyles/typography/Typography';
-import 'react-input-range/lib/css/index.css';
+
 
 import { ProductLayout1 } from '../products/ProductContainerStyles/ProductContainerStyle';
 import {
