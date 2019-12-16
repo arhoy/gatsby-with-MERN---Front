@@ -115,6 +115,24 @@ const RatingContainer = styled.div`
   text-align: center;
 `;
 
+const PaginationContainer1 = styled.div`
+  display: flex;
+  justify-content: center;
+
+  & button {
+    margin: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: none;
+    color: ${props => props.theme.colors.white};
+    background: ${props => props.theme.colors.primary};
+    &:hover {
+      background: ${props => props.theme.colors.primaryDark};
+    }
+  }
+`;
+
 export {
   StyledLinkContainer,
   ImageContainer,
@@ -130,4 +148,5 @@ export {
   ActionContainer,
   SelectContainer,
   InputRangeContainer,
+  PaginationContainer1,
 };

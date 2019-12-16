@@ -10,12 +10,15 @@ export const getAmazonProducts = (
   department,
   sort,
   price,
+  page,
+  limit,
 ) => async dispatch => {
   try {
     const res = await axios.get(
       `${
         process.env.GATSBY_SERVER_HOST_ROOT
-      }/api/v1/${department}?sort=${sort}&priceValue[gte]=${price || 0}`,
+      }/api/v1/${department}?sort=${sort}&priceValue[gte]=${price ||
+        0}&page=${page || 1}&limit=${limit}`,
     );
 
     // switch statement to determine which department of products to render

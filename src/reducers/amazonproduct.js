@@ -2,11 +2,11 @@ import { GET_AMAZON_PRODUCT, AMAZON_PRODUCTS_ERROR } from '../actions/types';
 
 const initialState = {
   amazonproduct: null,
-  amazonproducts: [],
-  amazontools: [],
-  amazonelectronics: [],
-  amazonautomotive: [],
-  amazonhomeanddecore: [],
+  amazonproducts: {},
+  amazontools: {},
+  amazonelectronics: {},
+  amazonautomotive: {},
+  amazonhomeanddecore: {},
   loading: true,
   error: {},
 };
@@ -17,37 +17,37 @@ export default function(state = initialState, action) {
     case `GET_AMAZON_PRODUCTS_amazonproducts`:
       return {
         ...state,
-        amazonproducts: payload.data,
+        amazonproducts: payload,
         loading: false,
       };
     case `GET_AMAZON_PRODUCTS_amazon-tools`:
       return {
         ...state,
-        amazontools: payload.data,
+        amazontools: payload,
         loading: false,
       };
     case `GET_AMAZON_PRODUCTS_amazon-electronics`:
       return {
         ...state,
-        amazonelectronics: payload.data,
+        amazonelectronics: payload,
         loading: false,
       };
     case `GET_AMAZON_PRODUCTS_amazon-automotive`:
       return {
         ...state,
-        amazonautomotive: payload.data,
+        amazonautomotive: payload,
         loading: false,
       };
     case `GET_AMAZON_PRODUCTS_amazon-home-and-decore`:
       return {
         ...state,
-        amazonhomeanddecore: payload.data,
+        amazonhomeanddecore: payload,
         loading: false,
       };
     case GET_AMAZON_PRODUCT:
       return {
         ...state,
-        amazonproduct: payload.data,
+        amazonproduct: payload,
         loading: false,
       };
 

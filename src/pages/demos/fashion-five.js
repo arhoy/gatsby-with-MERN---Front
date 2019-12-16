@@ -475,23 +475,29 @@ export default ({ data }) => {
       </Section>
 
       <Section>
-        <AmazonProductsHOC department={'amazonproducts'} />
+        <AmazonProductsHOC department={'amazonproducts'} limit={true} />
       </Section>
 
       <SectionGrey>
-        <AmazonProductsHOC department={'amazon-tools'} title="Tools" />
+        <AmazonProductsHOC
+          department={'amazon-tools'}
+          title="Tools"
+          limit={true}
+        />
       </SectionGrey>
 
       <Section>
         <AmazonProductsHOC
           department={'amazon-electronics'}
           title="Electronics"
+          limit={true}
         />
       </Section>
       <SectionGrey>
         <AmazonProductsHOC
           department={'amazon-automotive'}
           title="Automotive"
+          limit={true}
         />
       </SectionGrey>
 
@@ -499,6 +505,7 @@ export default ({ data }) => {
         <AmazonProductsHOC
           department={'amazon-home-and-decore'}
           title="Home & Decore"
+          limit={true}
         />
       </Section>
 

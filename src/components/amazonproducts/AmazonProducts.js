@@ -7,13 +7,13 @@ import { getAmazonProducts } from '../../actions/amazonproducts';
 import AmazonProduct from './AmazonProduct';
 import { H2 } from '../reusableStyles/typography/Typography';
 
-
 import { ProductLayout1 } from '../products/ProductContainerStyles/ProductContainerStyle';
 import {
   InputRangeContainer,
   ActionContainer,
   SelectContainer,
 } from './AmazonProductsStyling';
+import { ButtonStyle2 } from '../reusableStyles/buttons/Button';
 
 const AmazonProducts = ({
   getAmazonProducts,
@@ -27,6 +27,7 @@ const AmazonProducts = ({
   },
   department,
   title,
+  pagination,
 }) => {
   useEffect(() => {
     getAmazonProducts(department);
@@ -43,6 +44,7 @@ const AmazonProducts = ({
   ];
 
   const [selectedOption, setSelectedOption] = useState(options[0].value);
+  const [limit, setLimit] = useState(25);
   const [price, setPrice] = useState(0);
 
   const selectOptionHandler = e => {
@@ -57,8 +59,13 @@ const AmazonProducts = ({
     getAmazonProducts(department, selectedOption, e.target.value);
   };
 
+  const setLimitHandler = e => {
+    setLimit(prevLimit => prevLimit + 25);
+    getAmazonProducts(department, selectedOption, price, 1, limit);
+  };
+
   if (loading) return <div>Loading...</div>;
-  console.log('department is ', department);
+
   return (
     <>
       <ActionContainer>
@@ -85,70 +92,105 @@ const AmazonProducts = ({
       </ActionContainer>
 
       {department === 'amazonproducts' && (
-        <ProductLayout1>
-          {amazonproducts &&
-            amazonproducts.length > 0 &&
-            amazonproducts.map(amazonproduct => (
-              <AmazonProduct
-                key={amazonproduct._id}
-                amazonproduct={amazonproduct}
-                department={department}
-              />
-            ))}
-        </ProductLayout1>
+        <>
+          <ProductLayout1>
+            {amazonproducts.data &&
+              amazonproducts.data.length > 0 &&
+              amazonproducts.data.map(amazonproduct => (
+                <AmazonProduct
+                  key={amazonproduct._id}
+                  amazonproduct={amazonproduct}
+                  department={department}
+                />
+              ))}
+          </ProductLayout1>
+          {limit ? (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <ButtonStyle2 onClick={setLimitHandler}>View More</ButtonStyle2>
+            </div>
+          ) : null}
+        </>
       )}
 
       {department === 'amazon-tools' && (
-        <ProductLayout1>
-          {amazontools &&
-            amazontools.length > 0 &&
-            amazontools.map(amazonproduct => (
-              <AmazonProduct
-                key={amazonproduct._id}
-                amazonproduct={amazonproduct}
-                department={department}
-              />
-            ))}
-        </ProductLayout1>
+        <>
+          <ProductLayout1>
+            {amazontools.data &&
+              amazontools.data.length > 0 &&
+              amazontools.data.map(amazonproduct => (
+                <AmazonProduct
+                  key={amazonproduct._id}
+                  amazonproduct={amazonproduct}
+                  department={department}
+                />
+              ))}
+          </ProductLayout1>
+          {limit ? (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <ButtonStyle2 onClick={setLimitHandler}>View More</ButtonStyle2>
+            </div>
+          ) : null}
+        </>
       )}
       {department === 'amazon-electronics' && (
-        <ProductLayout1>
-          {amazonelectronics &&
-            amazonelectronics.length > 0 &&
-            amazonelectronics.map(amazonproduct => (
-              <AmazonProduct
-                key={amazonproduct._id}
-                amazonproduct={amazonproduct}
-                department={department}
-              />
-            ))}
-        </ProductLayout1>
+        <>
+          <ProductLayout1>
+            {amazonelectronics.data &&
+              amazonelectronics.data.length > 0 &&
+              amazonelectronics.data.map(amazonproduct => (
+                <AmazonProduct
+                  key={amazonproduct._id}
+                  amazonproduct={amazonproduct}
+                  department={department}
+                />
+              ))}
+          </ProductLayout1>
+          {limit ? (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <ButtonStyle2 onClick={setLimitHandler}>View More</ButtonStyle2>
+            </div>
+          ) : null}
+        </>
       )}
       {department === 'amazon-automotive' && (
-        <ProductLayout1>
-          {amazonautomotive &&
-            amazonautomotive.length > 0 &&
-            amazonautomotive.map(amazonproduct => (
-              <AmazonProduct
-                key={amazonproduct._id}
-                amazonproduct={amazonproduct}
-                department={department}
-              />
-            ))}
-        </ProductLayout1>
+        <>
+          <ProductLayout1>
+            {amazonautomotive.data &&
+              amazonautomotive.data.length > 0 &&
+              amazonautomotive.data.map(amazonproduct => (
+                <AmazonProduct
+                  key={amazonproduct._id}
+                  amazonproduct={amazonproduct}
+                  department={department}
+                />
+              ))}
+          </ProductLayout1>
+          {limit ? (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <ButtonStyle2 onClick={setLimitHandler}>View More</ButtonStyle2>
+            </div>
+          ) : null}
+        </>
       )}
       {department === 'amazon-home-and-decore' && (
-        <ProductLayout1>
-          {amazonhomeanddecore &&
-            amazonhomeanddecore.length > 0 &&
-            amazonhomeanddecore.map(amazonproduct => (
-              <AmazonProduct
-                key={amazonproduct._id}
-                amazonproduct={amazonproduct}
-                department={department}
-              />
-            ))}
-        </ProductLayout1>
+        <>
+          <ProductLayout1>
+            {amazonhomeanddecore.data &&
+              amazonhomeanddecore.data.length > 0 &&
+              amazonhomeanddecore.data.map(amazonproduct => (
+                <AmazonProduct
+                  key={amazonproduct._id}
+                  amazonproduct={amazonproduct}
+                  department={department}
+                />
+              ))}
+          </ProductLayout1>
+          {limit ? (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <ButtonStyle2 onClick={setLimitHandler}>View More</ButtonStyle2>
+            </div>
+          ) : null}
+        </>
       )}
     </>
   );

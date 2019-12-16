@@ -24,7 +24,9 @@ const fashionfiveamazon = () => {
       <Section>
         <H2>
           Support me below by disabling AdBlocker and buying from Amazon Below!
-          <span role="image"> 😍</span>
+          <span role="img" aria-label="">
+            😍
+          </span>
         </H2>
         <p>
           Don't have a product you are looking for? Send me a message or call me
@@ -37,7 +39,9 @@ const fashionfiveamazon = () => {
         </p>
         <p>
           These products bought in this order will make you an awesome developer
-          <span role="image"> 🤣😭😂</span>
+          <span role="img" aria-label="">
+            🤣😭😂
+          </span>
         </p>
 
         <FrameContainer>
