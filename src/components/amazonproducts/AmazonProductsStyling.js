@@ -133,6 +133,17 @@ const PaginationContainer1 = styled.div`
   }
 `;
 
+const ProductInputContainer1 = styled.div`
+  display: flex;
+  justify-content: center;
+  & input {
+    padding: 0.5rem;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid ${props => props.theme.colors.primary};
+  }
+`;
+
 export {
   StyledLinkContainer,
   ImageContainer,
@@ -149,4 +160,5 @@ export {
   SelectContainer,
   InputRangeContainer,
   PaginationContainer1,
+  ProductInputContainer1,
 };
