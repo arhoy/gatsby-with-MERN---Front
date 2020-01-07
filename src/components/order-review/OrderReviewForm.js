@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { connect } from 'react-redux';
 import { addReviewForSlug, editReview } from '../../actions/review';
 import PropTypes from 'prop-types';
-import PopupAlerts from '../reusableStyles/alerts/PopupAlerts';
 
 const Form = styled.form`
   display: flex;
@@ -38,6 +37,7 @@ const OrderReviewForm = ({
   edit,
   editReview,
   review,
+  reviewError,
 }) => {
   const [formData, setFormData] = useState({
     title: edit ? `${review.title}` : '',
@@ -103,7 +103,7 @@ const OrderReviewForm = ({
         <button className="btn" type="submit">
           Submit
         </button>
-        <PopupAlerts />
+        <div>{reviewError && reviewError}</div>
       </Form>
     </div>
   );
@@ -113,7 +113,11 @@ OrderReviewForm.propTypes = {
   addReviewForSlug: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = state => ({
+  reviewError: state.review.error,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { addReviewForSlug, editReview },
 )(OrderReviewForm);

@@ -88,6 +88,12 @@ const StyledImage2 = styled.img`
   margin: 0 auto;
 `;
 
+const StyledImage3 = styled.img`
+  max-width: 50rem
+  object-fit: cover;
+  margin: 0 auto;
+`;
+
 const StyledOldPrice = styled.span`
   color: ${props => props.theme.colors.darkgrey};
   text-decoration: line-through;
@@ -153,6 +159,7 @@ export {
   StyledOldPrice,
   StyledPrice,
   StyledImage2,
+  StyledImage3,
   StyledDiscountPrice,
   PriceContainer,
   RatingContainer,

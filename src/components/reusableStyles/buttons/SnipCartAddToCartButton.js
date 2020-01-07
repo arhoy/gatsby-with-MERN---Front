@@ -3,6 +3,8 @@
 import styled from '@emotion/styled';
 
 const SnipCartButton1 = styled.button`
+  max-width: 30rem;
+  margin: 2rem auto;
   outline: none;
   border: none;
   cursor: pointer;

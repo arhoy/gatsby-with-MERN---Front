@@ -171,7 +171,7 @@ const OrderReview = ({
   };
   // call editReview action
   const showEditForm = () => {
-    setShowOrderForm(preShowOrderForm => !preShowOrderForm);
+    setShowOrderForm(prev => !prev);
   };
   // call addLike action
   const toggleLikeHandler = reviewId => {
@@ -201,13 +201,15 @@ const OrderReview = ({
           {showActions ? (
             <ReviewButtonContainer>
               <StyledFaTimesCircle onClick={showActionsHandler} />
+              <ReviewButton onClick={showEditForm}>
+                {' '}
+                {showOrderForm ? 'Hide Form' : 'Edit Review'}
+              </ReviewButton>
               <ReviewButton
                 onClick={deleteReviewHandler.bind(this, review._id)}
               >
                 Delete Review
               </ReviewButton>
-
-              <ReviewButton onClick={showEditForm}>Edit Form</ReviewButton>
             </ReviewButtonContainer>
           ) : (
             <StyledFaEllipsisH onClick={showActionsHandler} />

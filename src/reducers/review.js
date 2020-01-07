@@ -11,7 +11,7 @@ const initialState = {
   reviews: [],
   review: null,
   loading: true,
-  error: {},
+  error: null,
 };
 
 export default function(state = initialState, action) {
@@ -22,6 +22,7 @@ export default function(state = initialState, action) {
         ...state,
         reviews: [payload.data, ...state.reviews],
         loading: false,
+        error: null,
       };
 
     case EDIT_REVIEW:
@@ -38,6 +39,7 @@ export default function(state = initialState, action) {
             : review,
         ),
         loading: false,
+        error: null,
       };
     case GET_REVIEWS:
       return {
@@ -54,7 +56,7 @@ export default function(state = initialState, action) {
     case REVIEW_ERROR:
       return {
         ...state,
-        error: payload.error,
+        error: payload.msg,
         loading: false,
       };
     case UPDATE_LIKES:

@@ -27,7 +27,7 @@ import {
   StyledDiscountBadge,
   ProductContainerLHS,
 } from '../../components/products/ProductStyle1/ProductStyles';
-import { StyledImage2 } from '../amazonproducts/AmazonProductsStyling';
+import { StyledImage3 } from '../amazonproducts/AmazonProductsStyling';
 import { TagContainer, Tag } from '../reusableStyles/tags/Tag';
 import RRC from '../reusableStyles/carousel/RRC';
 import prependIf from '../../helpers/prependIf';
@@ -69,64 +69,69 @@ const AmazonProduct = ({
           <CustomProductContainer>
             <ProductContainerLHS>
               <CustomProductImageContainer>
-                <ProductTitle>{amazonproduct.name}</ProductTitle>
+                <ProductTitle>{amazonproduct.data.name}</ProductTitle>
                 <TagContainer style={{ textAlign: 'center' }}>
-                  {amazonproduct.tags &&
+                  {amazonproduct.data.tags &&
                     amazonproduct.tags.map(tag => <Tag key={tag}>{tag}</Tag>)}
                 </TagContainer>
                 <ProductRating>
                   <ProductRatingStars>
-                    {renderRating(amazonproduct.rating)}
+                    {renderRating(amazonproduct.data.rating)}
                   </ProductRatingStars>
                   <ProductRatingDescription>
-                    {amazonproduct.rating} stars
+                    {amazonproduct.data.rating} stars
                   </ProductRatingDescription>
                 </ProductRating>
 
-                {amazonproduct.otherImages ? (
+                {amazonproduct.data.otherImages ? (
                   <RRC
                     images={prependIf(
-                      amazonproduct.image,
-                      amazonproduct.otherImages,
+                      amazonproduct.data.image,
+                      amazonproduct.data.otherImages,
                     )}
                   />
                 ) : (
-                  <StyledImage2
-                    src={amazonproduct.image}
-                    alt={amazonproduct.name}
+                  <StyledImage3
+                    src={amazonproduct.data.image}
+                    alt={amazonproduct.data.name}
                   />
                 )}
 
-                {amazonproduct.discountPrice ? (
+                {amazonproduct.data.discountPrice ? (
                   <PriceContainer>
-                    <StyledOldPrice>${amazonproduct.priceValue}</StyledOldPrice>
+                    <StyledOldPrice>
+                      ${amazonproduct.data.priceValue}
+                    </StyledOldPrice>
                     <StyledDiscountPrice>
-                      ${amazonproduct.discountPrice}
+                      ${amazonproduct.data.discountPrice}
                     </StyledDiscountPrice>
                     <StyledDiscountBadge>
                       {`Save ${calculatePercentage(
-                        amazonproduct.discountPrice,
-                        amazonproduct.priceValue,
+                        amazonproduct.data.discountPrice,
+                        amazonproduct.data.priceValue,
                         0,
                       )}% `}
                     </StyledDiscountBadge>
                   </PriceContainer>
                 ) : (
                   <PriceContainer>
-                    <StyledPrice> Sale ${amazonproduct.priceValue}</StyledPrice>
+                    <StyledPrice>
+                      {' '}
+                      Sale ${amazonproduct.data.priceValue}
+                    </StyledPrice>
                   </PriceContainer>
                 )}
                 <SnipCartButton1
                   className={`snipcart-add-item`}
-                  data-item-id={amazonproduct.name}
-                  data-item-name={amazonproduct.name}
-                  data-item-image={amazonproduct.image}
+                  data-item-id={amazonproduct.data.name}
+                  data-item-name={amazonproduct.data.name}
+                  data-item-image={amazonproduct.data.image}
                   data-item-price={
-                    amazonproduct.discountPrice
-                      ? amazonproduct.discountPrice
-                      : amazonproduct.priceValue
+                    amazonproduct.data.discountPrice
+                      ? amazonproduct.data.discountPrice
+                      : amazonproduct.data.priceValue
                   }
-                  data-item-url={`/app/${department}/${amazonproduct.slug}`}
+                  data-item-url={`/app/${department}/${amazonproduct.data.slug}`}
                 >
                   Add to Cart
                 </SnipCartButton1>
@@ -151,7 +156,7 @@ const AmazonProduct = ({
 
       <Section>
         <Container1200>
-          <OrderReviewContainer slug={amazonproduct.slug} />
+          <OrderReviewContainer slug={amazonproduct.data.slug} />
         </Container1200>
       </Section>
     </>

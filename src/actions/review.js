@@ -73,7 +73,7 @@ export const addReviewForSlug = (formData, productSlug) => async dispatch => {
     // if user not logged in return error
 
     // check form errors / validation express
-    const errors = error.response.data.errors;
+    const errors = error.response.data.error;
 
     if (errors) {
       dispatch(setAlert(errors.error, 'danger'));
@@ -81,7 +81,7 @@ export const addReviewForSlug = (formData, productSlug) => async dispatch => {
 
     dispatch({
       type: REVIEW_ERROR,
-      payload: { msg: error.response.status },
+      payload: { msg: error.response.data.error },
     });
   }
 };
@@ -110,14 +110,10 @@ export const editReview = (formData, reviewId) => async dispatch => {
       dispatch(setAlert('User must be logged in to add review!', 'danger'));
 
     // check form errors / validation express
-    const errors = error.response.data.errors;
-    if (errors) {
-      dispatch(setAlert(errors.error, 'danger'));
-    }
 
     dispatch({
       type: REVIEW_ERROR,
-      payload: { msg: error.response.status },
+      payload: { msg: error.response.data.error },
     });
   }
 };
