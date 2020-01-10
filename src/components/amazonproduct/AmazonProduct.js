@@ -123,7 +123,7 @@ const AmazonProduct = ({
                 )}
                 <SnipCartButton1
                   className={`snipcart-add-item`}
-                  data-item-id={amazonproduct.data.name}
+                  data-item-id={amazonproduct.data._id}
                   data-item-name={amazonproduct.data.name}
                   data-item-image={amazonproduct.data.image}
                   data-item-price={
@@ -135,6 +135,7 @@ const AmazonProduct = ({
                 >
                   Add to Cart
                 </SnipCartButton1>
+                <pre>{JSON.stringify(amazonproduct.data, null, 2)}</pre>
               </CustomProductImageContainer>
             </ProductContainerLHS>
 
