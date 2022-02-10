@@ -55,7 +55,7 @@
     "gatsby-transformer-sharp": "^2.2.19",
     "moment": "^2.24.0",
     "netlify-identity-widget": "^1.5.5",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "react": "^16.10.1",
     "react-alice-carousel": "^1.15.3",
     "react-dom": "^16.8.6",
